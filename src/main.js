@@ -1,15 +1,16 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+
+import store from './store'
 import VueRouter from 'vue-router'
 
-Vue.use(Vuex)
 Vue.use(VueRouter)
 
 // Components
-import App from './App.vue'
-import Home from './pages/Home'
-import About from './pages/About'
-import Projects from './pages/Projects'
+import App from './components/App.vue'
+import Home from './components/home/Home'
+import About from './components/about/About'
+import Projects from './components/projects/Projects'
+
 
 const routes = [
   { path: '/', component: Home },
@@ -22,6 +23,8 @@ const router = new VueRouter({ routes })
 Vue.config.productionTip = false
 
 new Vue({
+  el: '#app',
+  store,
   router,
   render: h => h(App),
-}).$mount('#app')
+})
