@@ -1,0 +1,81 @@
+{
+  "isDarkTheme": false,
+  "colors": {
+    "color1aqua": "#ABFAFF",
+    "color2lightPurple": "#9C93FF",
+    "color3medPurple": "#6761A8",
+    "color4darkPurple": "#333054",
+    "color5medGrey": "#B1B1B1"
+  },
+  "menu": {
+    "open": false,
+    "items": [
+      {
+        "name": "",
+        "link": "",
+        "active": false
+      },
+      {
+        "name": "",
+        "link": "",
+        "active": false
+      },
+      {
+        "name": "",
+        "link": "",
+        "active": false
+      }
+    ]
+  },
+  "pages": {
+    "home": {
+      "heroText": "",
+      "heroSubText": ""
+    },
+    "about": {
+      "sectionHeader": "",
+      "sectionText": "",
+      "skills": {
+        "header": "",
+        "skillItems": [
+          {
+            "name": "",
+            "desc": ""
+          },
+          {
+            "name": "",
+            "desc": ""
+          },
+          {
+            "name": "",
+            "desc": ""
+          },
+          {
+            "name": "",
+            "desc": ""
+          }
+        ]
+      }
+    },
+    "projects": {
+      "sectionHeader": "",
+      "projectItems": [
+        {
+          "name": "",
+          "desc": "",
+          "img": ""
+        },
+        {
+          "name": "",
+          "desc": "",
+          "img": ""
+        },
+        {
+          "name": "",
+          "desc": "",
+          "img": ""
+        }
+      ]
+    }
+  }
+}
