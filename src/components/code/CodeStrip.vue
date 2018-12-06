@@ -2,6 +2,7 @@
   <div>
     <snippet-block></snippet-block>
     <snippet-block></snippet-block>
+    <snippet-block></snippet-block>
   </div>
 </template>
 

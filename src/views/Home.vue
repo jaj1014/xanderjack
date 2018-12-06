@@ -1,7 +1,7 @@
 <template>
   <div id="home">
-    <h1>Home Vue Component</h1>
-    <p>{{ message }}</p>
+    <!-- <h1>Home Vue Component</h1>
+    <p>{{ message }}</p> -->
   </div>
 </template>
 
