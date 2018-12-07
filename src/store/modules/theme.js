@@ -1,24 +1,20 @@
 // API IMPORTS
+import { theme } from '../../api'
 
 // Initial State
 // 'type':
-const state = {
-  message: 'Hello world'
-}
+const state = JSON.parse(theme.getData())[0]
 
-// getters
-const getters = {}
+// // getters
+// const getters = {}
 
-// actions
-const actions = {}
+// // actions
+// const actions = {}
 
-// mutations
-const mutations = {}
+// // mutations
+// const mutations = {}
 
 export default {
   namespaced: true,
-  state, 
-  getters, 
-  actions,
-  mutations
+  state
 }

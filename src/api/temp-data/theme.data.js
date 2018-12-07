@@ -20,7 +20,7 @@
 // lightNeutral  #F9F9F9
 // accent        #ABFAFF
 
-export default {
+export default [{
   isDarkTheme: false,
   colors: {
     darkPrime: '#333054',
@@ -31,4 +31,4 @@ export default {
     lightNeutral: '#F9F9F9',
     accent: '#ABFAFF'
   }
-}
+}]

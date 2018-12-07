@@ -1,4 +1,4 @@
-export default {
+export default [{
   menu: {
     open: false,
     items: [
@@ -71,4 +71,4 @@ export default {
       { header: 'ferraro.', desc: 'Some text about the project that needs to be replaced.', img: '', detail: {} }
     ]
   }
-}
+}]

@@ -11,7 +11,7 @@ class API {
 
   constructor(endpoint, defaultData) {
     this._endpoint = endpoint
-    this._defaultData = defaultData
+    this._defaultData = JSON.stringify(defaultData)
 
     this._localStorageKey = `${endpoint.toUpperCase()}_LOCAL_KEY`
     this._isDataSaved = localStorage.getItem(this._localStorageKey) !== null
@@ -26,6 +26,7 @@ class API {
 
   // TODO: fix to call an API backend instead of 
   postData(data) {
+    data = JSON.stringify(data)
     this._updatedAndReturn(data)
   }
 
@@ -37,7 +38,5 @@ class API {
   }
 }
 
-export default {
-  pages: new API('pages', tempPageData),
-  theme: new API('theme', tempThemeData)
-}
+export const pages = new API('pages', tempPageData)
+export const theme = new API('theme', tempThemeData)

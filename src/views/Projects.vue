@@ -1,11 +1,11 @@
 <template>
   <section id="projects">
-    <h2>replace with projects.header</h2>
-    <article class="projs-item">
+    <h2>{{ page.header }}</h2>
+    <article v-for="project in page.items" :key="project.name" class="projs-item">
       <div class="projs-item__img"></div>
       <div class="projs-item__text">
-        <h3>replace with projects.items[n].header</h3>
-        <p>replace with projects.items[n].desc</p>
+        <h3>{{ project.header }}</h3>
+        <p>{{ project.desc }}</p>
       </div>
     </article>
   </section>
@@ -16,7 +16,7 @@ import { mapState } from 'vuex'
 
 export default {
   computed: mapState({
-    message: state => state.code.message
+    page: state => state.page.projects
   })
 }
 </script>
