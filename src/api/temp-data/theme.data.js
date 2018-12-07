@@ -19,3 +19,16 @@
 // medNeutral    #E2E2E2
 // lightNeutral  #F9F9F9
 // accent        #ABFAFF
+
+export default {
+  isDarkTheme: false,
+  colors: {
+    darkPrime: '#333054',
+    medPrime: '#6761A8',
+    lightPrime: '#9C93FF',
+    darkNeutral: '#B1B1B1',
+    medNeutral: '#E2E2E2',
+    lightNeutral: '#F9F9F9',
+    accent: '#ABFAFF'
+  }
+}

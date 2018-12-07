@@ -1,17 +1,17 @@
 <template>
-  <div id="home">
-    <!-- <h1>Home Vue Component</h1>
-    <p>{{ message }}</p> -->
-  </div>
+  <section id="home">
+    <h1>replace with home.header</h1>
+    <h4>replace with home.subText</h4>
+  </section>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+// import { mapState } from 'vuex'
 
 export default {
-  computed: mapState({
-    message: state => state.code.message
-  })
+  // computed: mapState({
+  //   message: state => state.code.message
+  // })
 }
 </script>
 

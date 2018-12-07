@@ -1,16 +1,7 @@
 // TODO: replace with backend calls ...
 // Defaults until backend is in place
-const defaultHistoryData = [{}]
-const defaultSkillsData = []
-const defaultThemeData = {
-  darkPrime: '#333054',
-  medPrime: '#6761A8',
-  lightPrime: '#9C93FF',
-  darkNeutral: '#B1B1B1',
-  medNeutral: '#E2E2E2',
-  lightNeutral: '#F9F9F9',
-  accent: '#ABFAFF'
-}
+import tempPageData from './temp-data/page.data'
+import tempThemeData from './temp-data/theme.data'
 
 class API {
   _endpoint
@@ -47,7 +38,6 @@ class API {
 }
 
 export default {
-  history: new API('history', defaultHistory),
-  skills: new API('skills', defaultSkills),
-  theme: new API('theme', defaultTheme)
+  pages: new API('pages', tempPageData),
+  theme: new API('theme', tempThemeData)
 }

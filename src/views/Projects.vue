@@ -1,8 +1,14 @@
 <template>
-  <div id="projects">
-    <h1>Projetcs Vue Component</h1>
-    <p>{{ message }}</p>
-  </div>
+  <section id="projects">
+    <h2>replace with projects.header</h2>
+    <article class="projs-item">
+      <div class="projs-item__img"></div>
+      <div class="projs-item__text">
+        <h3>replace with projects.items[n].header</h3>
+        <p>replace with projects.items[n].desc</p>
+      </div>
+    </article>
+  </section>
 </template>
 
 <script>
