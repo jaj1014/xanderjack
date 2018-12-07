@@ -1,11 +1,16 @@
-{
-  "isDarkTheme": false,
-  "colors": {
-    "color1aqua": "#ABFAFF",
-    "color2lightPurple": "#9C93FF",
-    "color3medPurple": "#6761A8",
-    "color4darkPurple": "#333054",
-    "color5medGrey": "#B1B1B1"
+{ 
+  "theme": {
+    "isDarkTheme": false,
+    "colors": {
+      "aqua": "#ABFAFF",
+      "lightPurple": "#9C93FF",
+      "medPurple": "#6761A8",
+      "darkPurple": "#333054",
+      "medGrey": "#B1B1B1"
+    },
+    "code": {
+      
+    }
   },
   "menu": {
     "open": false,

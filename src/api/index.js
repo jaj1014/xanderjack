@@ -1,8 +1,16 @@
 // TODO: replace with backend calls ...
 // Defaults until backend is in place
-const defaultHistory = [{}]
-const defaultSkills = []
-const defaultTheme = [{}]
+const defaultHistoryData = [{}]
+const defaultSkillsData = []
+const defaultThemeData = {
+  darkPrime: '#333054',
+  medPrime: '#6761A8',
+  lightPrime: '#9C93FF',
+  darkNeutral: '#B1B1B1',
+  medNeutral: '#E2E2E2',
+  lightNeutral: '#F9F9F9',
+  accent: '#ABFAFF'
+}
 
 class API {
   _endpoint
