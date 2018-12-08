@@ -23,12 +23,12 @@
 export default [{
   isDarkTheme: false,
   colors: {
-    darkPrime: '#333054',
-    medPrime: '#6761A8',
-    lightPrime: '#9C93FF',
-    darkNeutral: '#B1B1B1',
-    medNeutral: '#E2E2E2',
-    lightNeutral: '#F9F9F9',
-    accent: '#ABFAFF'
+    color1: { prop: 'color1', color: '#333054' },
+    color2: { prop: 'color2', color: '#6761A8' },
+    color3: { prop: 'color3', color: '#9C93FF' },
+    color4: { prop: 'color4', color: '#B1B1B1' },
+    color5: { prop: 'color5', color: '#E2E2E2' },
+    color6: { prop: 'color6', color: '#F9F9F9' },
+    color7: { prop: 'color7', color: '#ABFAFF' }
   }
 }]
