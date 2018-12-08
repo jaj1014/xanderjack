@@ -1,3 +1,7 @@
+import(/* webpackPreload: true */ 'typeface-hind/index.css')
+import(/* webpackPreload: true */ 'typeface-montserrat/index.css')
+import(/* webpackPreload: true */ './styles/main.scss')
+
 import Vue from 'vue'
 import store from './store'
 import router from './router'
