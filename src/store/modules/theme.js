@@ -17,6 +17,7 @@ const getters = {
   menuText: state => state.isDarkTheme ? state.colors.color1 : state.colors.color6,
   background: state => state.isDarkTheme ? state.colors.color1 : state.colors.color6,
   header: state => state.isDarkTheme ? state.colors.color6 : state.colors.color1,
+  heroSubText: state => state.isDarkTheme ? state.colors.color7 : state.colors.color2,
   bodyText: state => state.isDarkTheme ? state.colors.color6 : state.colors.color2,
   skillChip: state => state.isDarkTheme ? state.colors.color2 : state.colors.color3,
   skillChipText: state => state.colors.color6,

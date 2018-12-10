@@ -1,18 +1,23 @@
 <template>
   <section id="home">
-    <h1>{{ page.header }}</h1>
-    <h4>{{ page.subText }}</h4>
+    <section-header :text="page.header" tag="h1"></section-header>
+    <section-header :text="page.subText" tag="h4"></section-header>
   </section>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
+
+import SectionHeader from '../components/text/SectionHeader'
 
 export default {
-  computed: mapState({
-    page: state => state.page.home
-  })
-}
+  components: { SectionHeader },
+  computed: {
+    ...mapState({
+      page: state => state.page.home
+    })
+  }
+};
 </script>
 
 <style lang="scss">

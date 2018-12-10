@@ -2,7 +2,6 @@
   <div>
     <snippet-block></snippet-block>
     <snippet-block></snippet-block>
-    <snippet-block></snippet-block>
   </div>
 </template>
 
@@ -10,7 +9,7 @@
 import SnippetBlock from './SnippetBlock'
 
 export default {
-  name: 'code-stripe',
+  name: 'code-strip',
   components: {
     SnippetBlock
   }

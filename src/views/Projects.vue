@@ -1,6 +1,6 @@
 <template>
   <section id="projects">
-    <h2>{{ page.header }}</h2>
+    <section-header :text="page.header" tag="h2"></section-header>
     <article v-for="project in page.items" :key="project.name" class="projs-item">
       <div class="projs-item__img"></div>
       <div class="projs-item__text">
@@ -14,7 +14,10 @@
 <script>
 import { mapState } from 'vuex'
 
+import SectionHeader from '../components/text/SectionHeader'
+
 export default {
+  components: { SectionHeader },
   computed: mapState({
     page: state => state.page.projects
   })

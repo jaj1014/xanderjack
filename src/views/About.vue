@@ -1,6 +1,6 @@
 <template>
   <section id="about">
-    <h2>{{ page.header }}</h2>
+    <section-header :text="page.header" tag="h2"></section-header>
     <p>{{ page.desc.p1 }}</p>
     <p>{{ page.desc.p2 }}</p>
     <p>{{ page.desc.p3 }}</p>
@@ -16,7 +16,10 @@
 <script>
 import { mapState } from 'vuex'
 
+import SectionHeader from '../components/text/SectionHeader'
+
 export default {
+  components: { SectionHeader },
   computed: mapState({
     page: state => state.page.about
   })
