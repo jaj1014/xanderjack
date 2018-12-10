@@ -3,21 +3,23 @@
     <!-- <router-link to="/">Home</router-link>
     <router-link to="/about">About</router-link>
     <router-link to="/projects">Projects</router-link>-->
-    <p @click="toggleTheme()">Click to toggle theme</p>
+    <theme-button></theme-button>
     <code-strip></code-strip>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters } from "vuex"
 
-import CodeStrip from "./components/code/CodeStrip";
+import CodeStrip from "./components/code/CodeStrip"
+import ThemeButton from "./components/buttons/ThemeButton"
 
 export default {
   name: "app",
   components: {
-    CodeStrip
+    CodeStrip,
+    ThemeButton
   },
   computed: {
     ...mapGetters({
@@ -26,13 +28,13 @@ export default {
     bodyStyle () {
       return { backgroundColor: this.background.color }
     }
-  },
-  methods: {
-    ...mapMutations({
-      toggleTheme: "theme/toggleTheme"
-    })
-  }
+  }  
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+  #app {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+  }
+</style>

@@ -14,15 +14,17 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
-import SectionHeader from '../components/text/SectionHeader'
+import SectionHeader from "../components/text/SectionHeader"
 
 export default {
   components: { SectionHeader },
-  computed: mapState({
-    page: state => state.page.about
-  })
+  computed: {
+    ...mapState({
+      page: state => state.page.about
+    })
+  }
 }
 </script>
 
