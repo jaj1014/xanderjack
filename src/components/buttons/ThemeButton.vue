@@ -1,6 +1,6 @@
 <template>
-  <div id="theme-button" :style="iconBgStyle">
-    <component :is="displayIcon" :style="iconStyle" @click="toggleTheme()"/>
+  <div id="theme-button" :style="iconBgStyle" @click="toggleTheme()">
+    <component :is="displayIcon" :style="iconStyle"/>
   </div>
 </template>
 
@@ -39,13 +39,15 @@ export default {
 
 <style lang="scss" scoped>
   #theme-button {
-    display: flex;
-    width: 3.125rem;
-    height: 3.125rem;
-    border-radius: 1.5625rem;
     align-items: center;
+    border-radius: 1.5625rem;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.25); // TODO: replace with dynamic style
+    cursor: pointer;
+    display: flex;
     flex-direction: row;
+    height: 3.125rem;
     justify-content: space-evenly;
+    width: 3.125rem;
   }
 </style>
 
