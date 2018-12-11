@@ -24,6 +24,7 @@ const getters = {
   actionBackground: state => state.isDarkTheme ? state.colors.color6 : state.colors.color2,
   actionIcon: state => state.isDarkTheme ? state.colors.color2 : state.colors.color6,
   href: state => state.isDarkTheme ? state.colors.color7 : state.colors.color3,
+  dropShadow: state => state.isDarkTheme ? state.colors.shadow2 : state.colors.shadow1
 }
 
 // actions - interact with API and commit mutations

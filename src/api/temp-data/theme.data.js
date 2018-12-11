@@ -29,6 +29,8 @@ export default [{
     color4: { prop: 'color4', color: '#B1B1B1' },
     color5: { prop: 'color5', color: '#E2E2E2' },
     color6: { prop: 'color6', color: '#F9F9F9' },
-    color7: { prop: 'color7', color: '#ABFAFF' }
+    color7: { prop: 'color7', color: '#ABFAFF' },
+    shadow1: 'rgba(0, 0, 0, 0.25)',
+    shadow2: 'rgba(0, 0, 0, 0.5)'
   }
 }]

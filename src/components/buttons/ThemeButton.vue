@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// TODO: move this to a RoundButton component and implement that component as a Theme and Contact button
 import { mapState, mapGetters } from "vuex";
 import { SunIcon, MoonIcon } from "vue-feather-icons";
 
@@ -17,7 +18,8 @@ export default {
     }),
     ...mapGetters({
       actionIcon: 'theme/actionIcon',
-      actionBackground: 'theme/actionBackground'
+      actionBackground: 'theme/actionBackground',
+      dropShadow: 'theme/dropShadow'
     }),
     displayIcon() {
       return this.isDarkTheme ? SunIcon : MoonIcon
@@ -26,7 +28,10 @@ export default {
       return { color: this.actionIcon.color }
     },
     iconBgStyle() {
-      return { backgroundColor: this.actionBackground.color }
+      return { 
+        backgroundColor: this.actionBackground.color,
+        boxShadow: `2px 2px 20px ${this.dropShadow}`        
+      }
     }
   },
   methods: {
@@ -41,7 +46,7 @@ export default {
   #theme-button {
     align-items: center;
     border-radius: 1.5625rem;
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.25); // TODO: replace with dynamic style
+    // box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.25); // TODO: replace with dynamic style
     cursor: pointer;
     display: flex;
     flex-direction: row;
