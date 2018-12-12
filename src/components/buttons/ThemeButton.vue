@@ -1,42 +1,27 @@
 <template>
-  <div id="theme-button" :style="iconBgStyle" @click="toggleTheme()">
-    <component :is="displayIcon" :style="iconStyle"/>
-  </div>
+  <round-button :icon="displayIcon" @btnClick="toggleTheme()"></round-button>
 </template>
 
 <script>
-// TODO: move this to a RoundButton component and implement that component as a Theme and Contact button
-import { mapState, mapGetters } from "vuex";
-import { SunIcon, MoonIcon } from "vue-feather-icons";
+import { mapState } from "vuex"
+import { SunIcon, MoonIcon } from "vue-feather-icons"
+
+import RoundButton from './base/RoundButton'
 
 export default {
   name: "theme-button",
-  components: { SunIcon, MoonIcon },
+  components: { RoundButton },
   computed: {
     ...mapState({
       isDarkTheme: state => state.theme.isDarkTheme
     }),
-    ...mapGetters({
-      actionIcon: 'theme/actionIcon',
-      actionBackground: 'theme/actionBackground',
-      dropShadow: 'theme/dropShadow'
-    }),
     displayIcon() {
       return this.isDarkTheme ? SunIcon : MoonIcon
-    },
-    iconStyle() {
-      return { color: this.actionIcon.color }
-    },
-    iconBgStyle() {
-      return { 
-        backgroundColor: this.actionBackground.color,
-        boxShadow: `2px 2px 20px ${this.dropShadow}`        
-      }
     }
   },
   methods: {
     toggleTheme() {
-      this.$store.commit("theme/toggleTheme");
+      this.$store.commit("theme/toggleTheme")
     }
   }
 }
@@ -46,7 +31,6 @@ export default {
   #theme-button {
     align-items: center;
     border-radius: 1.5625rem;
-    // box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.25); // TODO: replace with dynamic style
     cursor: pointer;
     display: flex;
     flex-direction: row;

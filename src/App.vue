@@ -2,6 +2,7 @@
   <div id="app" :style="bodyStyle">
     <nav>
       <theme-button></theme-button>
+      <contact-button></contact-button>
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
       <router-link to="/projects">Projects</router-link>
@@ -20,12 +21,14 @@ import { mapGetters } from "vuex"
 
 import CodeStrip from "./components/code/CodeStrip"
 import ThemeButton from "./components/buttons/ThemeButton"
+import ContactButton from "./components/buttons/ContactButton"
 
 export default {
   name: "app",
   components: {
     CodeStrip,
-    ThemeButton
+    ThemeButton,
+    ContactButton
   },
   computed: {
     ...mapGetters({
@@ -59,7 +62,6 @@ export default {
     .code-container {
       align-items: center;
       display: flex;
-      justify-content: space-around;
       overflow: hidden;
       width: 42.3667%;
     }

@@ -17,7 +17,7 @@ export default [{
     ]
   },
   home: {
-    header: "i'm alex jackson",
+    header: "i'm alex jackson.",
     subText: 'I love solving problems.'
   },
   about: {

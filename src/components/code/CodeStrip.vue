@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="code-strip">
     <snippet-block v-for="(block, index) in blocksDisplayArr" :key="index"></snippet-block>
   </div>
 </template>
@@ -26,4 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  #code-strip {
+    margin-left: 8.125rem;
+  }
 </style>
