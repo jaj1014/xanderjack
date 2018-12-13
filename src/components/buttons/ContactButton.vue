@@ -8,7 +8,7 @@
 <script>
 import { MessageCircleIcon } from "vue-feather-icons";
 
-import RoundButton from "./base/RoundButton";
+import RoundButton from "./elements/RoundButton";
 import Contact from "../modal/Contact";
 
 export default {
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     toggleContactModal() {
-      this.showModal = !this.showModal
+      this.showModal = !this.showModal;
     }
   }
 };

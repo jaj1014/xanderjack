@@ -27,3 +27,34 @@ h4 {
 p, a {
   font-size: 1.125rem;
 }
+
+/* Typography Utility Classes */
+.fnt-lead {
+  font-family: 'Hind', 'Helvetica', sans-serif;
+  font-weight: 700;
+} 
+
+.fnt-main {
+  font-family: 'Montserrat', 'Verdana', sans-serif;
+  font-weight: 400;
+}
+
+.fnt-s {
+  font-size: 1.125rem;
+}
+
+.fnt-m {
+  font-size: 2rem;
+}
+
+.fnt-l {
+  font-size: 2.125rem;
+}
+
+.fnt-xl {
+  font-size: 4rem;
+}
+
+.fnt-xxl {
+  font-size: 5rem;
+}

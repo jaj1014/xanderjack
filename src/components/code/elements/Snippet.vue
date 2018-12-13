@@ -4,17 +4,17 @@
 
 <script>
 export default {
-  name: 'snippet',
-  props: ['color', 'width'],
+  name: "snippet",
+  props: ["color", "width"],
   computed: {
-    colorAndWidth: function() {
+    colorAndWidth() {
       return {
         backgroundColor: this.color,
-        width: this.width + 'px'
-      }
+        width: this.width + "px"
+      };
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

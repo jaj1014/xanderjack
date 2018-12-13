@@ -1,11 +1,8 @@
 <template>
   <div id="app" :style="bodyStyle">
     <nav>
-      <theme-button></theme-button>
-      <contact-button></contact-button>
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/projects">Projects</router-link>
+      <main-nav></main-nav>
+      <actions></actions>
     </nav>
     <main>
       <router-view></router-view>
@@ -17,53 +14,56 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import { mapGetters } from "vuex";
 
-import CodeStrip from "./components/code/CodeStrip"
-import ThemeButton from "./components/buttons/ThemeButton"
-import ContactButton from "./components/buttons/ContactButton"
+import MainNav from "./components/main-nav/MainNav";
+import Actions from "./components/actions/Actions";
+import CodeStrip from "./components/code/CodeStrip";
 
 export default {
   name: "app",
   components: {
-    CodeStrip,
-    ThemeButton,
-    ContactButton
+    MainNav,
+    Actions,
+    CodeStrip
   },
   computed: {
     ...mapGetters({
-      background: 'theme/background'
+      background: "theme/background"
     }),
-    bodyStyle () {
-      return { backgroundColor: this.background.color }
+    bodyStyle() {
+      return { backgroundColor: this.background.color };
     }
-  }  
+  }
 };
 </script>
 
 <style lang="scss">
-  #app {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    overflow: auto;
-    top: 0; right: 0; bottom: 0; left: 0;
+#app {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  overflow: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
-    nav {
-      width: 11.8%;
-    }
-
-    main {
-      align-items: center;
-      display: flex;
-      width: 45.8333%
-    }
-
-    .code-container {
-      align-items: center;
-      display: flex;
-      overflow: hidden;
-      width: 42.3667%;
-    }
+  nav {
+    width: 11.8%;
   }
+
+  main {
+    align-items: center;
+    display: flex;
+    width: 45.8333%;
+  }
+
+  .code-container {
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    width: 42.3667%;
+  }
+}
 </style>

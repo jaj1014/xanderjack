@@ -3,10 +3,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex"
-import { SunIcon, MoonIcon } from "vue-feather-icons"
+import { mapState } from "vuex";
+import { SunIcon, MoonIcon } from "vue-feather-icons";
 
-import RoundButton from './base/RoundButton'
+import RoundButton from "./elements/RoundButton";
 
 export default {
   name: "theme-button",
@@ -16,27 +16,27 @@ export default {
       isDarkTheme: state => state.theme.isDarkTheme
     }),
     displayIcon() {
-      return this.isDarkTheme ? SunIcon : MoonIcon
+      return this.isDarkTheme ? SunIcon : MoonIcon;
     }
   },
   methods: {
     toggleTheme() {
-      this.$store.commit("theme/toggleTheme")
+      this.$store.commit("theme/toggleTheme");
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-  #theme-button {
-    align-items: center;
-    border-radius: 1.5625rem;
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    height: 3.125rem;
-    justify-content: space-evenly;
-    width: 3.125rem;
-  }
+#theme-button {
+  align-items: center;
+  border-radius: 1.5625rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  height: 3.125rem;
+  justify-content: space-evenly;
+  width: 3.125rem;
+}
 </style>
 

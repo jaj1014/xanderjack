@@ -5,25 +5,25 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'round-button',
+  name: "round-button",
   props: { icon: Object },
   computed: {
     ...mapGetters({
-      actionIcon: 'theme/actionIcon',
-      actionBackground: 'theme/actionBackground',
-      dropShadow: 'theme/dropShadow'
+      actionIcon: "theme/actionIcon",
+      actionBackground: "theme/actionBackground",
+      dropShadow: "theme/dropShadow"
     }),
     btnIconStyle() {
-      return { color: this.actionIcon.color }
+      return { color: this.actionIcon.color };
     },
     btnBgStyle() {
-      return { 
+      return {
         backgroundColor: this.actionBackground.color,
-        boxShadow: `2px 2px 20px ${this.dropShadow}`        
-      }
+        boxShadow: `2px 2px 20px ${this.dropShadow}`
+      };
     }
   }
 };

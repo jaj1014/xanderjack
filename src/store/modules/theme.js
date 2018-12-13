@@ -13,7 +13,6 @@ const getters = {
   medNeutral: state => state.colors.color4,
   lightNeutral: state => state.isDarkTheme ? state.colors.color1 : state.colors.color6,
   accent: state => state.colors.color7,
-  menuBackground: state => state.isDarkTheme ? state.colors.color6 : state.colors.color1,
   menuText: state => state.isDarkTheme ? state.colors.color1 : state.colors.color6,
   background: state => state.isDarkTheme ? state.colors.color1 : state.colors.color6,
   header: state => state.isDarkTheme ? state.colors.color6 : state.colors.color1,

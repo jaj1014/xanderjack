@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import SnippetBlock from "./SnippetBlock"
+import SnippetBlock from "./elements/SnippetBlock"
 
 // TODO: make this work ... not currently dynamic
 let windowHeight = window.innerHeight

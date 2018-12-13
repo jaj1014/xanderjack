@@ -1,6 +1,5 @@
 export default [{
   menu: {
-    open: false,
     items: [
       {
         "name": "home",
@@ -8,11 +7,11 @@ export default [{
       },
       {
         "name": "about",
-        "link": "/about"
+        "route": "/about"
       },
       {
         "name": "projects",
-        "link": "/projects"
+        "route": "/projects"
       }
     ]
   },
