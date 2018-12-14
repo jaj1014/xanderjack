@@ -1,12 +1,18 @@
 <template>
-  <nav>
+  <nav v-show="isOpen">
     <router-link
-      class="menu-item fnt-xl fnt-lead"
       v-for="item in menuItems"
+      class="menu-item fnt-xl fnt-lead"
+      exact
       :key="item.name"
-      :style="menuItemStyle"
-      :to="item.route"
-    >{{item.name}}.</router-link>
+      :to="item.path"
+      :style="{
+        color: menuText.color, 
+        textDecoration: item.path !== $route.fullPath ? 'none' : ('underline solid' + accent.color)
+      }"
+    >
+      <span @click="$emit('menuLinkClick')">{{item.name}}.</span>
+    </router-link>
   </nav>
 </template>
 
@@ -23,7 +29,8 @@ export default {
       menuItems: state => state.page.menu.items
     }),
     ...mapGetters({
-      menuText: "theme/menuText"
+      menuText: "theme/menuText",
+      accent: "theme/accent"
     }),
     menuItemStyle() {
       return {
@@ -35,9 +42,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+nav {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 10rem;
+  width: 100%;
+}
+
 .menu-item {
   display: block;
-  text-decoration: none;
+  margin-bottom: 5rem;
 }
 </style>
-

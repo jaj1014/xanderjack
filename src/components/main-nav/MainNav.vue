@@ -1,7 +1,7 @@
 <template>
   <div id="main-nav" :style="menuBgStyle">
     <menu-button :isOpen="isOpen" @menuBtnClick="toggleIsOpen()"></menu-button>
-    <menu-links :isOpen="isOpen"></menu-links>
+    <menu-links :isOpen="isOpen" @menuLinkClick="toggleIsOpen()"></menu-links>
   </div>
 </template>
 
@@ -45,6 +45,5 @@ export default {
   bottom: 0;
   position: absolute;
   top: 0;
-  width: 28.125rem;
 }
 </style>

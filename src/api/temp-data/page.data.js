@@ -3,15 +3,15 @@ export default [{
     items: [
       {
         "name": "home",
-        "route": "/"
+        "path": "/",
       },
       {
         "name": "about",
-        "route": "/about"
+        "path": "/about"
       },
       {
         "name": "projects",
-        "route": "/projects"
+        "path": "/projects"
       }
     ]
   },

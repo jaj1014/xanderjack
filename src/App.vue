@@ -1,13 +1,13 @@
 <template>
   <div id="app" :style="bodyStyle">
-    <nav>
+    <div class="left-container">
       <main-nav></main-nav>
       <actions></actions>
-    </nav>
+    </div>
     <main>
       <router-view></router-view>
     </main>
-    <div class="code-container">
+    <div class="right-container">
       <code-strip></code-strip>
     </div>
   </div>
@@ -49,7 +49,7 @@ export default {
   bottom: 0;
   left: 0;
 
-  nav {
+  .left-container {
     width: 11.8%;
   }
 
@@ -59,7 +59,7 @@ export default {
     width: 45.8333%;
   }
 
-  .code-container {
+  .right-container {
     align-items: center;
     display: flex;
     overflow: hidden;
