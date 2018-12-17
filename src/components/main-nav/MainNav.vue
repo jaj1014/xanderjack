@@ -28,7 +28,7 @@ export default {
       return {
         backgroundColor: this.isOpen ? this.darkPrime.color : this.lightNeutral.color,
         zIndex: this.isOpen ? 10 : 0,
-        width: this.isOpen ? "28.125rem" : "inherit"
+        width: this.isOpen ? "28.125rem" : "10%"
       };
     }
   },
@@ -45,5 +45,6 @@ export default {
   bottom: 0;
   position: absolute;
   top: 0;
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 </style>

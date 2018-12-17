@@ -1,28 +1,57 @@
 <template>
-  <!-- <p @click="$emit('menuBtnClick')">Toggle Menu</p> -->
-  <div class="menu cross menu--1" @click="$emit('menuBtnClick')">
+  <div class="menu-btn cross menu--1">
     <label>
       <input type="checkbox">
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="30"></circle>
-        <path class="line--1" d="M0 40h62c13 0 6 28-4 18L35 35"></path>
-        <path class="line--2" d="M0 50h70"></path>
-        <path class="line--3" d="M0 60h62c13 0 6-28-4-18L35 65"></path>
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" @click="$emit('menuBtnClick')">
+        <circle cx="60" cy="60" r="20"></circle>
+        <path :style="line1Style" class="line--1" d="M0 40h62c13 0 6 28-4 18L35 35"></path>
+        <path :style="line2Style" class="line--2" d="M0 50h70"></path>
+        <path :style="line3Style" class="line--3" d="M0 60h62c13 0 6-28-4-18L35 65"></path>
       </svg>
     </label>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapState } from "vuex";
+
 export default {
   name: "menu-button",
   props: {
     isOpen: Boolean
+  },
+  computed: {
+    ...mapGetters({
+      darkPrime: "theme/darkPrime",
+      lightNeutral: "theme/lightNeutral"
+    }),
+    ...mapState({
+      medPrime: state => state.theme.colors.color2,
+      lightPrime: state => state.theme.colors.color3
+    }),
+    line1Style() {
+      return {
+        stroke: this.isOpen ? this.lightNeutral.color : this.darkPrime.color
+      };
+    },
+    line2Style() {
+      return { stroke: this.lightPrime.color };
+    },
+    line3Style() {
+      return { stroke: this.medPrime.color };
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.menu-btn {
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  right: 0;
+}
+
 input {
   display: none;
 }
@@ -30,9 +59,9 @@ input {
 label {
   display: block;
   cursor: pointer;
-  position: absolute;
-  max-width: 100px;
-  max-height: 100px;
+  position: relative;
+  max-width: 120px;
+  max-height: 120px;
 }
 
 path {
@@ -46,7 +75,6 @@ path {
 .line--1 {
   --length: 24;
   --offset: -38;
-  stroke: #333054;
   stroke-dasharray: var(--length) var(--total-length);
   stroke-dashoffset: var(--offset);
 }
@@ -54,7 +82,6 @@ path {
 .line--2 {
   --length: 28;
   --offset: -38;
-  stroke: #9c93ff;
   stroke-dasharray: var(--length) var(--total-length);
   stroke-dashoffset: var(--offset);
 }
@@ -62,7 +89,6 @@ path {
 .line--3 {
   --length: 22;
   --offset: -38;
-  stroke: #6761a8;
   stroke-dasharray: var(--length) var(--total-length);
   stroke-dashoffset: var(--offset);
 }
