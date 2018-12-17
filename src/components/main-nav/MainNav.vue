@@ -28,7 +28,7 @@ export default {
       return {
         backgroundColor: this.isOpen ? this.darkPrime.color : this.lightNeutral.color,
         zIndex: this.isOpen ? 10 : 0,
-        width: this.isOpen ? "28.125rem" : "10%"
+        width: this.isOpen ? "28.125rem" : "8.5625rem"
       };
     }
   },
