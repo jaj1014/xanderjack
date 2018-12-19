@@ -1,7 +1,7 @@
 <template>
   <div :class="[{ open: isOpen }, 'menu-btn', 'cross menu--1']">
     <label>
-      <input type="checkbox">
+      <input type="checkbox" v-model="isOpen">
       <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" @click="$emit('menuBtnClick')">
         <circle cx="60" cy="60" r="20"></circle>
         <path :style="line1Style" class="line--1" d="M0 40h62c13 0 6 28-4 18L35 35"></path>
