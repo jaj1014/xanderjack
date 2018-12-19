@@ -1,5 +1,5 @@
 <template>
-  <div class="menu-btn cross menu--1">
+  <div :class="[{ open: isOpen }, 'menu-btn', 'cross menu--1']">
     <label>
       <input type="checkbox">
       <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" @click="$emit('menuBtnClick')">
@@ -49,7 +49,13 @@ export default {
   position: absolute;
   height: 120px;
   width: 120px;
-  right: 0;
+  left: 0px;
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  z-index: 11;
+
+  &.open {
+    left: 345px;
+  }
 }
 
 input {
@@ -98,13 +104,15 @@ circle {
   opacity: 0;
 }
 
-.cross input:checked + svg {
-  .line--1,
-  .line--3 {
-    --length: 22.627416998;
-  }
-  .line--2 {
-    --length: 0;
+.cross {
+  input:checked + svg {
+    .line--1,
+    .line--3 {
+      --length: 22.627416998;
+    }
+    .line--2 {
+      --length: 0;
+    }
   }
 }
 

@@ -6,12 +6,16 @@
       exact
       :key="item.name"
       :to="item.path"
-      :style="{
-          color: menuText.color, 
-          textDecoration: item.path !== $route.fullPath ? 'none' : ('underline solid' + accent.color)
-        }"
+      :style="menuItemStyle"
     >
-      <span @click="$emit('menuLinkClick')">{{item.name}}.</span>
+      <span @click="$emit('menuLinkClick')">
+        {{item.name}}.
+        <span
+          v-show="item.path === $route.path"
+          class="menu-item-underline"
+          :style="menuItemUnderlineStyle"
+        ></span>
+      </span>
     </router-link>
   </nav>
 </template>
@@ -36,6 +40,11 @@ export default {
       return {
         color: this.menuText.color
       };
+    },
+    menuItemUnderlineStyle() {
+      return {
+        backgroundColor: this.accent.color
+      };
     }
   }
 };
@@ -48,20 +57,32 @@ nav {
   flex-direction: column;
   justify-content: space-between;
   margin-top: 10rem;
-  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-  visibility: hidden;
   width: 100%;
 
   &.open {
-    .menu-item {
+    .menu-item,
+    .menu-item-underline {
+      opacity: 1;
       visibility: visible;
     }
   }
 }
 
-.menu-item {
+.menu-item,
+.menu-item-underline {
   display: block;
-  margin-bottom: 5rem;
+  opacity: 0;
   visibility: hidden;
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.menu-item {
+  margin-bottom: 5rem;
+  text-decoration: none;
+}
+
+.menu-item-underline {
+  height: 8px;
+  width: 100%;
 }
 </style>

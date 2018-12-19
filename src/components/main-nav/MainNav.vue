@@ -1,7 +1,9 @@
 <template>
-  <div id="main-nav" :style="menuBgStyle">
+  <div id="main-nav">
     <menu-button :isOpen="isOpen" @menuBtnClick="toggleIsOpen()"></menu-button>
-    <menu-links :isOpen="isOpen" @menuLinkClick="toggleIsOpen()"></menu-links>
+    <div :class="[{ open: isOpen }, 'menu-body']" :style="menuBgStyle">
+      <menu-links :isOpen="isOpen" @menuLinkClick="toggleIsOpen()"></menu-links>
+    </div>
   </div>
 </template>
 
@@ -26,9 +28,7 @@ export default {
     }),
     menuBgStyle() {
       return {
-        backgroundColor: this.isOpen ? this.darkPrime.color : this.lightNeutral.color,
-        zIndex: this.isOpen ? 10 : 0,
-        width: this.isOpen ? "28.125rem" : "8.5625rem"
+        backgroundColor: this.darkPrime.color
       };
     }
   },
@@ -41,10 +41,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#main-nav {
+#main-nav,
+.menu-body {
   bottom: 0;
   position: absolute;
   top: 0;
   transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 8.5625rem; 
+}
+
+.menu-body {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 0;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+    width: 28.125rem;
+    z-index: 10;
+  }
 }
 </style>
