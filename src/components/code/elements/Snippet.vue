@@ -1,12 +1,23 @@
 <template>
-  <div class="snippet" :style="colorAndWidth"></div>
+  <div class="snippet" :style="colorAndWidth" @click="toggleColorPicker"></div>
 </template>
 
 <script>
 export default {
   name: "snippet",
-  props: ["color", "width"],
+  props: {
+    color: String, 
+    width: String
+  },
   computed: {
+    convertedColor() {
+      const valArr = this.color
+        .replace('rgba(', '')
+        .replace(')', '')
+        .split(',');
+
+      return { r: valArr[0], g: valArr[1], b: valArr[2], a: valArr[3] }
+    },
     colorAndWidth() {
       return {
         backgroundColor: this.color,
