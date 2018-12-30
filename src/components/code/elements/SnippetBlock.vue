@@ -1,67 +1,67 @@
 <template>
   <div class="snippet-block">
     <div>
-      <snippet :color="accent.color" width="20"></snippet>
-      <snippet :color="lightPrime.color" width="230"></snippet>
+      <snippet :value="accent" width="20"></snippet>
+      <snippet :value="lightPrime" width="230"></snippet>
     </div>
     <div>
-      <snippet :color="medPrime.color" width="280"></snippet>
+      <snippet :value="medPrime" width="280"></snippet>
     </div>
     <div>
-      <snippet :color="lightPrime.color" width="80"></snippet>
-      <snippet :color="darkPrime.color" width="175"></snippet>
+      <snippet :value="lightPrime" width="80"></snippet>
+      <snippet :value="darkPrime" width="175"></snippet>
     </div>
     <div>
-      <snippet :color="darkPrime.color" width="20"></snippet>
-      <snippet :color="accent.color" width="175"></snippet>
-      <snippet :color="darkNeutral.color" width="80"></snippet>
+      <snippet :value="darkPrime" width="20"></snippet>
+      <snippet :value="accent" width="175"></snippet>
+      <snippet :value="darkNeutral" width="80"></snippet>
     </div>
     <div>
-      <snippet :color="darkNeutral.color" width="100"></snippet>
-      <snippet :color="lightPrime.color" width="80"></snippet>
-      <snippet :color="medPrime.color" width="20"></snippet>
-      <snippet :color="darkNeutral.color" width="80"></snippet>
+      <snippet :value="darkNeutral" width="100"></snippet>
+      <snippet :value="lightPrime" width="80"></snippet>
+      <snippet :value="medPrime" width="20"></snippet>
+      <snippet :value="darkNeutral" width="80"></snippet>
     </div>
     <div>
-      <snippet :color="darkNeutral.color" width="20"></snippet>
-      <snippet :color="darkPrime.color" width="260"></snippet>
+      <snippet :value="darkNeutral" width="20"></snippet>
+      <snippet :value="darkPrime" width="260"></snippet>
     </div>
     <div>
-      <snippet :color="accent.color" width="178"></snippet>
-      <snippet :color="lightPrime.color" width="20"></snippet>
-      <snippet :color="darkNeutral.color" width="20"></snippet>
+      <snippet :value="accent" width="178"></snippet>
+      <snippet :value="lightPrime" width="20"></snippet>
+      <snippet :value="darkNeutral" width="20"></snippet>
     </div>
     <div>
-      <snippet :color="darkNeutral.color" width="20"></snippet>
-      <snippet :color="medPrime.color" width="170"></snippet>
-      <snippet :color="accent.color" width="80"></snippet>
+      <snippet :value="darkNeutral" width="20"></snippet>
+      <snippet :value="medPrime" width="170"></snippet>
+      <snippet :value="accent" width="80"></snippet>
     </div>
     <div>
-      <snippet :color="lightPrime.color" width="310"></snippet>
+      <snippet :value="lightPrime" width="310"></snippet>
     </div>
     <div>
-      <snippet :color="darkNeutral.color" width="80"></snippet>
-      <snippet :color="darkPrime.color" width="175"></snippet>
+      <snippet :value="darkNeutral" width="80"></snippet>
+      <snippet :value="darkPrime" width="175"></snippet>
     </div>
     <div>
-      <snippet :color="darkNeutral.color" width="20"></snippet>
-      <snippet :color="accent.color" width="175"></snippet>
-      <snippet :color="darkNeutral.color" width="80"></snippet>
+      <snippet :value="darkNeutral" width="20"></snippet>
+      <snippet :value="accent" width="175"></snippet>
+      <snippet :value="darkNeutral" width="80"></snippet>
     </div>
     <div>
-      <snippet :color="lightPrime.color" width="100"></snippet>
-      <snippet :color="medPrime.color" width="80"></snippet>
-      <snippet :color="lightPrime.color" width="20"></snippet>
-      <snippet :color="darkPrime.color" width="80"></snippet>
+      <snippet :value="lightPrime" width="100"></snippet>
+      <snippet :value="medPrime" width="80"></snippet>
+      <snippet :value="lightPrime" width="20"></snippet>
+      <snippet :value="darkPrime" width="80"></snippet>
     </div>
     <div>
-      <snippet :color="medPrime.color" width="20"></snippet>
-      <snippet :color="darkPrime.color" width="222"></snippet>
+      <snippet :value="medPrime" width="20"></snippet>
+      <snippet :value="darkPrime" width="222"></snippet>
     </div>
     <div>
-      <snippet :color="lightPrime.color" width="178"></snippet>
-      <snippet :color="accent.color" width="20"></snippet>
-      <snippet :color="medPrime.color" width="20"></snippet>
+      <snippet :value="lightPrime" width="178"></snippet>
+      <snippet :value="accent" width="20"></snippet>
+      <snippet :value="medPrime" width="20"></snippet>
     </div>
   </div>
 </template>

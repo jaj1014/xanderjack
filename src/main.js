@@ -6,6 +6,10 @@ import Vue from 'vue'
 import store from './store'
 import router from './router'
 
+// Vendor js
+import VueTippy from 'vue-tippy';
+Vue.use(VueTippy);
+
 import App from './App.vue'
 
 Vue.config.productionTip = false
