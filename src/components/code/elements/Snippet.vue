@@ -33,8 +33,11 @@ export default {
     },
     tippyToolTip() {
       return {
+        animateFill: false,
         html: "#color-picker",
         trigger: "click",
+        livePlacement: true,
+        theme: "picker",
         interactive: true,
         reactive: true
       };
@@ -53,7 +56,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .snippet {
   border-radius: 6px;
   cursor: pointer;
@@ -61,6 +64,13 @@ export default {
   height: 8px;
   margin-bottom: 6px;
   margin-right: 10px;
+}
+
+.tippy-tooltip {
+  &.picker-theme {
+    padding: 0;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.25);
+  }
 }
 </style>
 
