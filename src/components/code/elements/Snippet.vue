@@ -46,11 +46,11 @@ export default {
   methods: {
     changeColor(color) {
       const payload = {
-        newColor: `rgba(${color.rgba.r}, ${color.rgba.g}, ${color.rgba.b}, ${color.rgba.a})`,
-        colorProp: this.value.prop
+        color: `rgba(${color.rgba.r}, ${color.rgba.g}, ${color.rgba.b}, ${color.rgba.a})`,
+        prop: this.value.prop
       };
-      
-      this.$store.commit('theme/changeColor', payload);
+
+      this.$store.dispatch("theme/updateColor", payload);
     }
   }
 };

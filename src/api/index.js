@@ -4,37 +4,41 @@ import tempPageData from './temp-data/page.data'
 import tempThemeData from './temp-data/theme.data'
 
 class API {
-  _endpoint
-  _defaultData
-  _localStorageKey
-  _isDataSaved = false
+  getEndpoint
+  getDefaultData
+  getLocalStorageKey
+  getIsDataSaved
 
   constructor(endpoint, defaultData) {
-    this._endpoint = endpoint
-    this._defaultData = JSON.stringify(defaultData)
+    let _endpoint = endpoint
+    let _defaultData = JSON.stringify(defaultData)
+    let _localStorageKey = `${endpoint.toUpperCase()}_LOCAL_KEY`
+    let _isDataSaved = localStorage.getItem(_localStorageKey) !== null
 
-    this._localStorageKey = `${endpoint.toUpperCase()}_LOCAL_KEY`
-    this._isDataSaved = localStorage.getItem(this._localStorageKey) !== null
+    this.getEndpoint = () => _endpoint
+    this.getDefaultData = () => _defaultData
+    this.getLocalStorageKey = () => _localStorageKey
+    this.getIsDataSaved = () => _isDataSaved
   }
 
   // TODO: fix to call an API backend instead of 
   getData() {
-    return this._isDataSaved ?
-      localStorage.getItem(this._localStorageKey) :
-      this._updatedAndReturn(this._defaultData)
+    return this.getIsDataSaved() ?
+      localStorage.getItem(this.getLocalStorageKey()) :
+      this.updatedAndReturn(this.getDefaultData())
   }
 
   // TODO: fix to call an API backend instead of 
   postData(data) {
-    data = JSON.stringify(data)
-    this._updatedAndReturn(data)
+    data = JSON.stringify([data])
+    this.updatedAndReturn(data)
   }
 
   // TODO: fix once API is in
-  _updatedAndReturn(data) {
-    localStorage.setItem(this._localStorageKey, data)
+  updatedAndReturn(data) {
+    localStorage.setItem(this.getLocalStorageKey(), data)
 
-    return localStorage.getItem(this._localStorageKey)
+    return localStorage.getItem(this.getLocalStorageKey())
   }
 }
 

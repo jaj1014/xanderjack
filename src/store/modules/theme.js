@@ -27,14 +27,33 @@ const getters = {
 }
 
 // actions - interact with API and commit mutations
-// const actions = {}
+const actions = {
+  updateColor({ commit, state }, payload) {
+    const newData = state
+    newData.colors[payload.prop] = { ...payload }
+
+    // const newData = [{
+    //   isDarkTheme: state.isDarkTheme,
+    //   colors: {
+    //     ...state.colors,
+    //     [payload.colorProp]: {
+    //       prop: payload.colorProp, 
+    //       color: payload.newColor
+    //     }
+    //   }
+    // }]
+
+    theme.postData(newData)
+    commit('changeColor', payload)
+  }
+}
 
 // mutations
 const mutations = {
-  toggleTheme (state) {
+  toggleTheme(state) {
     state.isDarkTheme = !state.isDarkTheme
   },
-  changeColor (state, payload) {
+  changeColor(state, payload) {
     state.colors[payload.colorProp].color = payload.newColor
   }
 }
@@ -43,5 +62,6 @@ export default {
   namespaced: true,
   state,
   getters,
-  mutations
+  mutations,
+  actions
 }
