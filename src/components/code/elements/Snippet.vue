@@ -1,10 +1,15 @@
 <template>
   <div class="snippet" :style="colorAndWidth" v-tippy="tippyToolTip">
-    <chrome-picker id="color-picker" :value="convertedColor" @input="changeColor"></chrome-picker>
+    <div id="color-picker">
+      <chrome-picker :value="convertedColor" @input="updateColor"></chrome-picker>
+      <p @click="resetTheme">Reset Theme</p>
+      <p @click="resetColor(colorProp)">Reset Color</p>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import { Chrome } from "vue-color";
 
 export default {
@@ -25,6 +30,9 @@ export default {
 
       return { r: valArr[0], g: valArr[1], b: valArr[2], a: valArr[3] };
     },
+    colorProp() {
+      return this.value.prop;
+    },
     colorAndWidth() {
       return {
         backgroundColor: this.value.color,
@@ -44,12 +52,12 @@ export default {
     }
   },
   methods: {
-    changeColor(color) {
-      const payload = {
-        color: `rgba(${color.rgba.r}, ${color.rgba.g}, ${color.rgba.b}, ${color.rgba.a})`,
-        prop: this.value.prop
-      };
-
+    ...mapActions({
+      resetColor: "theme/resetColor",
+      resetTheme: "theme/resetTheme"
+    }),
+    updateColor(pickerColor) {
+      const payload = { pickerColor, prop: this.value.prop };
       this.$store.dispatch("theme/updateColor", payload);
     }
   }

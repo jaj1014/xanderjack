@@ -35,8 +35,8 @@ class API {
   }
 
   resetData() {
-    const data = JSON.stringify([this.getDefaultData()])
-    this.updateAndReturn(data);
+    const data = this.getDefaultData()
+    return this.updateAndReturn(data);
   }
 
   // TODO: fix once API is in
