@@ -1,5 +1,5 @@
 <template>
-  <button :style="color">Click me</button>
+  <button class="basic-btn" :style="colorStyle" @click="$emit('click')">{{ title }}</button>
 </template>
 
 <script>
@@ -10,7 +10,7 @@ export default {
     color: String
   },
   computed: {
-    color() {
+    colorStyle() {
       return {
         backgroundColor: this.color
       }
@@ -20,7 +20,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  .basic-btn {
+    cursor: pointer;
+  }
 </style>
 
 

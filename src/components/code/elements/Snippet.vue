@@ -2,8 +2,8 @@
   <div class="snippet" :style="colorAndWidth" v-tippy="tippyToolTip">
     <div id="color-picker">
       <chrome-picker :value="convertedColor" @input="updateColor"></chrome-picker>
-      <p @click="resetTheme">Reset Theme</p>
-      <p @click="resetColor(colorProp)">Reset Color</p>
+      <basic-btn @click="resetColor(colorProp)" title="Reset Color"></basic-btn>
+      <basic-btn @click="resetTheme" title="Reset Theme"></basic-btn>
     </div>
   </div>
 </template>
@@ -11,11 +11,13 @@
 <script>
 import { mapActions } from "vuex";
 import { Chrome } from "vue-color";
+import BasicButton from "../../buttons/BasicButton";
 
 export default {
   name: "snippet",
   components: {
-    "chrome-picker": Chrome
+    "chrome-picker": Chrome,
+    "basic-btn": BasicButton
   },
   props: {
     value: Object,
