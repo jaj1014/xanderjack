@@ -1,11 +1,4 @@
-// API IMPORTS
-import { theme } from '../../api'
-
-// Initial State
-const state = JSON.parse(theme.getData())[0]
-
-// getters
-const getters = {
+export default {
   darkPrime: state => state.isDarkTheme ? state.colors.color6 : state.colors.color1,
   medPrime: state => state.isDarkTheme ? state.colors.color7 : state.colors.color2,
   lightPrime: state => state.colors.color3,
@@ -24,44 +17,4 @@ const getters = {
   actionIcon: state => state.isDarkTheme ? state.colors.color2 : state.colors.color6,
   href: state => state.isDarkTheme ? state.colors.color7 : state.colors.color3,
   dropShadow: state => state.isDarkTheme ? state.colors.shadow2 : state.colors.shadow1
-}
-
-// actions - interact with API and commit mutations
-const actions = {
-  updateColor({ commit, state }, payload) {
-    const newData = state
-    newData.colors[payload.prop] = { ...payload }
-
-    // const newData = [{
-    //   isDarkTheme: state.isDarkTheme,
-    //   colors: {
-    //     ...state.colors,
-    //     [payload.colorProp]: {
-    //       prop: payload.colorProp, 
-    //       color: payload.newColor
-    //     }
-    //   }
-    // }]
-
-    theme.postData(newData)
-    commit('changeColor', payload)
-  }
-}
-
-// mutations
-const mutations = {
-  toggleTheme(state) {
-    state.isDarkTheme = !state.isDarkTheme
-  },
-  changeColor(state, payload) {
-    state.colors[payload.colorProp].color = payload.newColor
-  }
-}
-
-export default {
-  namespaced: true,
-  state,
-  getters,
-  mutations,
-  actions
 }

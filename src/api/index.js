@@ -25,17 +25,22 @@ class API {
   getData() {
     return this.getIsDataSaved() ?
       localStorage.getItem(this.getLocalStorageKey()) :
-      this.updatedAndReturn(this.getDefaultData())
+      this.updateAndReturn(this.getDefaultData())
   }
 
   // TODO: fix to call an API backend instead of 
   postData(data) {
     data = JSON.stringify([data])
-    this.updatedAndReturn(data)
+    this.updateAndReturn(data)
+  }
+
+  resetData() {
+    const data = JSON.stringify([this.getDefaultData()])
+    this.updateAndReturn(data);
   }
 
   // TODO: fix once API is in
-  updatedAndReturn(data) {
+  updateAndReturn(data) {
     localStorage.setItem(this.getLocalStorageKey(), data)
 
     return localStorage.getItem(this.getLocalStorageKey())

@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 // Modules
 import page from './modules/page'
-import theme from './modules/theme'
+import theme from './modules/theme/index'
 
 Vue.use(Vuex)
 
