@@ -7,7 +7,6 @@
 <script>
 import SnippetBlock from "./elements/SnippetBlock"
 
-// TODO: make this work ... not currently dynamic
 let windowHeight = window.innerHeight
 const handleResize = e => windowHeight = e.target.innerHeight
 window.addEventListener("resize", handleResize)
@@ -21,6 +20,9 @@ export default {
     blocksDisplayArr() {
       return new Array(Math.ceil(windowHeight / 252))
     }
+  },
+  beforeDestroy() {
+    window.removeEventListener(handleResize);
   }
 };
 </script>
