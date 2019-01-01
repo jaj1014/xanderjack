@@ -44,6 +44,7 @@ export default {
     tippyToolTip() {
       return {
         animateFill: false,
+        arrow: true,
         html: "#color-picker",
         trigger: "click",
         livePlacement: true,
@@ -76,10 +77,29 @@ export default {
   margin-right: 10px;
 }
 
+.vc-chrome {
+  box-shadow: none !important;
+}
+
 .tippy-tooltip {
   &.picker-theme {
-    padding: 0;
+    background-color: #ffffff;
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.25);
+    padding: 0;
+
+    .tippy-arrow {
+      border-top-color: #ffffff;
+    }
+  }
+}
+
+.tippy-popper[x-placement^="bottom"] {
+  .tippy-tooltip {
+    &.picker-theme {
+      .tippy-arrow {
+        border-bottom-color: #ffffff;
+      }
+    }
   }
 }
 </style>
