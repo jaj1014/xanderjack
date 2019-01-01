@@ -1,7 +1,7 @@
 <template>
   <div>
-    <round-button :icon="icon" @btnClick="toggleContactModal()"></round-button>
-    <component :is="contactModal" v-show="showModal"></component>
+    <round-button :icon="icon" v-tippy="tippyToolTip"></round-button>
+    <contact-popover id="contact-popover"></contact-popover>
   </div>
 </template>
 
@@ -9,17 +9,34 @@
 import { MessageCircleIcon } from "vue-feather-icons";
 
 import RoundButton from "./elements/RoundButton";
-import Contact from "../modal/Contact";
+import ContactPopover from "../modal/ContactPopover";
 
 export default {
   name: "contact-button",
-  components: { RoundButton },
+  components: {
+    "round-button": RoundButton,
+    "contact-popover": ContactPopover
+  },
   data() {
     return {
       icon: MessageCircleIcon,
-      contactModal: Contact,
+      contactModal: ContactPopover,
       showModal: false
     };
+  },
+  computed: {
+    tippyToolTip() {
+      return {
+        animateFill: false,
+        arrow: true,
+        html: "#contact-popover",
+        interactive: true,
+        livePlacement: true,
+        placement: "right-start",
+        reactive: true,
+        trigger: "click"
+      };
+    }
   },
   methods: {
     toggleContactModal() {
@@ -30,15 +47,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#theme-button {
-  align-items: center;
-  border-radius: 1.5625rem;
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  height: 3.125rem;
-  justify-content: space-evenly;
-  width: 3.125rem;
-}
 </style>
 

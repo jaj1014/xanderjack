@@ -22,9 +22,9 @@ export default [{
   about: {
     header: 'about',
     desc: {
-      p1: '',
-      p2: '',
-      p3: ''
+      p1: 'My journey to web development started out of necessity and quickly developed into a passion.',
+      p2: 'By trade, I am a musician with a Bachelors of Music in Performance, but without an abundance of opportunities I found my way to recruiting.When I was asked to recruit Web Developers, it didn’t take long before I realized I had no clue what they really did — so I googled it.',
+      p3: 'Today, I am a Front End Developer with Softpro writing an application using the Angular framework. I strive to implement clean, easy-to-use interfaces that delight users and developers, alike.'
     },
     skills: {
       header: 'skills.',
