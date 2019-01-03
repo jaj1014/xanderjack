@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul id="skills-list">
     <li v-for="skill in skillsArr" :key="skill.name">
       <skill-item :skill="skill"></skill-item>
     </li>
@@ -26,5 +26,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+#skills-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 </style>

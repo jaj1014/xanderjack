@@ -20,7 +20,7 @@ export default [{
     subText: 'I love solving problems.'
   },
   about: {
-    header: 'about',
+    header: 'about.',
     desc: {
       p1: 'My journey to web development started out of necessity and quickly developed into a passion.',
       p2: 'By trade, I am a musician with a Bachelors of Music in Performance, but without an abundance of opportunities I found my way to recruiting.When I was asked to recruit Web Developers, it didn’t take long before I realized I had no clue what they really did — so I googled it.',

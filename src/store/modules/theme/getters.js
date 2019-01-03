@@ -1,6 +1,7 @@
 export default {
   darkPrime: state => state.isDarkTheme ? state.colors.color6 : state.colors.color1,
   medPrime: state => state.isDarkTheme ? state.colors.color7 : state.colors.color2,
+  codeMedPrime: state => state.colors.color2,
   lightPrime: state => state.colors.color3,
   darkNeutral: state => state.colors.color4,
   medNeutral: state => state.colors.color4,

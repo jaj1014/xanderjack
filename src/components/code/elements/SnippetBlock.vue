@@ -5,7 +5,7 @@
       <snippet :value="lightPrime" width="230"></snippet>
     </div>
     <div>
-      <snippet :value="medPrime" width="280"></snippet>
+      <snippet :value="codeMedPrime" width="280"></snippet>
     </div>
     <div>
       <snippet :value="lightPrime" width="80"></snippet>
@@ -19,7 +19,7 @@
     <div>
       <snippet :value="darkNeutral" width="100"></snippet>
       <snippet :value="lightPrime" width="80"></snippet>
-      <snippet :value="medPrime" width="20"></snippet>
+      <snippet :value="codeMedPrime" width="20"></snippet>
       <snippet :value="darkNeutral" width="80"></snippet>
     </div>
     <div>
@@ -33,7 +33,7 @@
     </div>
     <div>
       <snippet :value="darkNeutral" width="20"></snippet>
-      <snippet :value="medPrime" width="170"></snippet>
+      <snippet :value="codeMedPrime" width="170"></snippet>
       <snippet :value="accent" width="80"></snippet>
     </div>
     <div>
@@ -50,18 +50,18 @@
     </div>
     <div>
       <snippet :value="lightPrime" width="100"></snippet>
-      <snippet :value="medPrime" width="80"></snippet>
+      <snippet :value="codeMedPrime" width="80"></snippet>
       <snippet :value="lightPrime" width="20"></snippet>
       <snippet :value="darkPrime" width="80"></snippet>
     </div>
     <div>
-      <snippet :value="medPrime" width="20"></snippet>
+      <snippet :value="codeMedPrime" width="20"></snippet>
       <snippet :value="darkPrime" width="222"></snippet>
     </div>
     <div>
       <snippet :value="lightPrime" width="178"></snippet>
       <snippet :value="accent" width="20"></snippet>
-      <snippet :value="medPrime" width="20"></snippet>
+      <snippet :value="codeMedPrime" width="20"></snippet>
     </div>
   </div>
 </template>
@@ -80,7 +80,7 @@ export default {
     ...mapGetters({
       accent: 'theme/accent',
       lightPrime: 'theme/lightPrime',
-      medPrime: 'theme/medPrime',
+      codeMedPrime: 'theme/codeMedPrime',
       darkPrime: 'theme/darkPrime',
       darkNeutral: 'theme/darkNeutral'
     })

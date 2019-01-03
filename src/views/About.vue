@@ -3,7 +3,7 @@
     <section-header :text="page.header" tag="h2"></section-header>
     <section-desc :text="page.desc"></section-desc>
     <article>
-      <section-header :text="page.header" tag="h3"></section-header>
+      <section-header :text="page.skills.header" tag="h3"></section-header>
       <skills-list :skills="page.skills.items"></skills-list>
     </article>
   </section>
@@ -27,4 +27,7 @@ export default {
 </script>
 
 <style lang="scss">
+article {
+  margin-top: 2rem;
+}
 </style>
