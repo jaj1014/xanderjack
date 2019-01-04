@@ -1,27 +1,48 @@
 <template>
-  <span id="skill-item" class="fnt-main fnt-s" :style="skillItemStyle">{{ skillItem.name }}</span>
+  <li>
+    <span
+      id="skill-item"
+      class="fnt-main fnt-s"
+      :style="skillItemStyle"
+      v-tippy="tippyToolTip"
+    >{{ skill.name }}</span>
+    <skill-popover id="skill-popover" :skill="skill"></skill-popover>
+  </li>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 
+import SkillPopover from './SkillPopover';
+
 export default {
   props: {
     skill: Object
+  },
+  components: {
+    "skill-popover": SkillPopover
   },
   computed: {
     ...mapGetters({
       skillChip: "theme/skillChip",
       skillChipText: "theme/skillChipText"
     }),
-    skillItem() {
-      return this.skill;
-    },
     skillItemStyle() {
       return {
         color: this.skillChipText.color,
         backgroundColor: this.skillChip.color
       }
+    },
+    tippyToolTip() {
+      return {
+        animateFill: false,
+        arrow: true,
+        html: "#skill-popover",
+        interactive: true,
+        livePlacement: true,
+        reactive: true,
+        trigger: "click"
+      };
     }
   }
 }

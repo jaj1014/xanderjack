@@ -1,8 +1,6 @@
 <template>
   <ul id="skills-list">
-    <li v-for="skill in skillsArr" :key="skill.name">
-      <skill-item :skill="skill"></skill-item>
-    </li>
+    <skill-item v-for="skill in skillsArr" :key="skill.name" :skill="skill"></skill-item>
   </ul>
 </template>
 
