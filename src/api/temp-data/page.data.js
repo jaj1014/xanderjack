@@ -31,7 +31,7 @@ export default [{
       items: [
         { name: 'javascript.', detail: 'Some detail about how I have used this tech that needs to be replaced.', use: 'production' },
         { name: 'typescript.', detail: 'Some detail about how I have used this tech that needs to be replaced.', use: 'production' },
-        { name: 'es6', detail: 'Some detail about how I have used this tech that needs to be replaced.', use: 'production' },
+        { name: 'es6.', detail: 'Some detail about how I have used this tech that needs to be replaced.', use: 'production' },
         { name: 'css.', detail: 'Some detail about how I have used this tech that needs to be replaced.', use: 'production' },
         { name: 'sass.', detail: 'Some detail about how I have used this tech that needs to be replaced.', use: 'production' },
         { name: 'html.', detail: 'Some detail about how I have used this tech that needs to be replaced.', use: 'production' },

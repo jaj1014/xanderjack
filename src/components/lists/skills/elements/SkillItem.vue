@@ -13,7 +13,7 @@
 <script>
 import { mapGetters } from "vuex";
 
-import SkillPopover from './SkillPopover';
+import SkillPopover from "./SkillPopover";
 
 export default {
   props: {
@@ -31,7 +31,7 @@ export default {
       return {
         color: this.skillChipText.color,
         backgroundColor: this.skillChip.color
-      }
+      };
     },
     tippyToolTip() {
       return {
@@ -41,11 +41,12 @@ export default {
         interactive: true,
         livePlacement: true,
         reactive: true,
+        theme: "skill-item",
         trigger: "click"
       };
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
