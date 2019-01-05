@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { MessageCircleIcon } from "vue-feather-icons";
+import { MailIcon } from "vue-feather-icons";
 
 import RoundButton from "./elements/RoundButton";
 import ContactPopover from "../modal/ContactPopover";
@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      icon: MessageCircleIcon,
+      icon: MailIcon,
       contactModal: ContactPopover,
       showModal: false
     };
