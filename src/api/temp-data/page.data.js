@@ -62,11 +62,11 @@ export default [{
     }
   },
   projects: {
-    header: 'projects',
+    header: 'projects.',
     items: [
-      { header: 'sphere.', desc: 'Some text about the project that needs to be replaced.', img: '', detail: {} },
-      { header: 'singl.link.', desc: 'Some text about the project that needs to be replaced.', img: '', detail: {} },
-      { header: 'ferraro.', desc: 'Some text about the project that needs to be replaced.', img: '', detail: {} }
+      { header: 'sphere.', desc: "Sphere is Softpro's cloud-based, Title and Escrow software solution currently under development and beta testing. This is the product I am currently working on.", img: 'https://www.fillmurray.com/232/174', detail: {} },
+      { header: 'singl.link.', desc: "singl.link is a project I created for managing link favorites between browsers - you just have to remember a single link (see what I did that?)", img: 'https://www.fillmurray.com/232/174', detail: {} },
+      { header: 'ferraro.', desc: "A while back, I was connected to a friend of a friend who was in need of a website for her Licensed Professional Counseling work. This is the site I designed and coded for her.", img: 'https://www.fillmurray.com/232/174', detail: {} }
     ]
   }
 }]

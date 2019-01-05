@@ -21,7 +21,7 @@ export default {
 <style lang="scss" scoped>
 #projects-list {
   list-style: none;
-  margin: 0;
+  margin: 0.5rem 0 0 0;
   padding: 0;
 }
 </style>

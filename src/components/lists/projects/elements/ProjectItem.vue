@@ -1,16 +1,18 @@
 <template>
   <li>
-    <article class="projs-item">
-      <div class="projs-item__img"></div>
-      <div class="projs-item__text">
+    <article>
+      <img :src="project.img" :alt="`Screenshot image of ${project.header}`">
+      <div>
         <section-header :text="project.header" tag="h3"></section-header>
-        <p>{{ project.desc }}</p>
+        <p class="project-desc fnt-s" :style="textStyle">{{ project.desc }}</p>
       </div>
     </article>
   </li>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 import SectionHeader from "../../../text/SectionHeader";
 
 export default {
@@ -20,11 +22,36 @@ export default {
   },
   props: {
     project: Object
+  },
+  computed: {
+    ...mapGetters({
+      "bodyText": "theme/bodyText"
+    }),
+    textStyle() {
+      return {
+        color: this.bodyText.color
+      };
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+article {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  img {
+    height: 174px; 
+    margin-right: 3.75rem;
+    width: 232px;
+  }
+
+  .project-desc {
+    margin: 0;
+  }
+}
 </style>
 
 
