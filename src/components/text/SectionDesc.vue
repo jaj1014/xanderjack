@@ -22,7 +22,7 @@ export default {
     textStyle() {
       return {
         color: this.bodyText.color
-      }
+      };
     }
   }
 };

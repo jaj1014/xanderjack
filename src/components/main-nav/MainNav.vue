@@ -47,7 +47,7 @@ export default {
   position: absolute;
   top: 0;
   transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-  width: 8.5625rem; 
+  width: 8.5625rem;
 }
 
 .menu-body {

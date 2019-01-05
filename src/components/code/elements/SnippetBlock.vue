@@ -67,29 +67,29 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
-import Snippet from './Snippet';
+import Snippet from "./Snippet";
 
 export default {
-  name: 'snippet-block',
+  name: "snippet-block",
   components: {
     Snippet
   },
   computed: {
     ...mapGetters({
-      accent: 'theme/accent',
-      lightPrime: 'theme/lightPrime',
-      codeMedPrime: 'theme/codeMedPrime',
-      darkPrime: 'theme/darkPrime',
-      darkNeutral: 'theme/darkNeutral'
+      accent: "theme/accent",
+      lightPrime: "theme/lightPrime",
+      codeMedPrime: "theme/codeMedPrime",
+      darkPrime: "theme/darkPrime",
+      darkNeutral: "theme/darkNeutral"
     })
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-  .snippet-block {
-    width: 320px;
-  }
+.snippet-block {
+  width: 320px;
+}
 </style>

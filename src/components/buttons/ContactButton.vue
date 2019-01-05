@@ -9,7 +9,7 @@
 import { MailIcon } from "vue-feather-icons";
 
 import RoundButton from "./elements/RoundButton";
-import ContactPopover from "../modal/ContactPopover";
+import ContactPopover from "./elements/ContactPopover";
 
 export default {
   name: "contact-button",

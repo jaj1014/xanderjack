@@ -8,7 +8,7 @@
 <script>
 import { mapState } from "vuex";
 
-import SectionHeader from '../components/text/SectionHeader'
+import SectionHeader from "../components/text/SectionHeader";
 
 export default {
   components: { SectionHeader },
@@ -21,8 +21,8 @@ export default {
 </script>
 
 <style lang="scss">
-  #home {
-    text-align: center;
-    width: 100%;
-  }
+#home {
+  text-align: center;
+  width: 100%;
+}
 </style>

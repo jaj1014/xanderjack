@@ -2,23 +2,23 @@
   <div class="skill-popover">
     <strong class="fnt-main fnt-s fnt-wt-600">{{ skill.name }}</strong>
     <p class="fnt-main fnt-base">{{ skill.detail }}</p>
-    <p class="fnt-main fnt-base">use: <span class="fnt-wt-600">{{ skill.use }}</span></p>
+    <p class="fnt-main fnt-base">use:
+      <span class="fnt-wt-600">{{ skill.use }}</span>
+    </p>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'skill-popover',
+  name: "skill-popover",
   props: {
     skill: Object
   }
-}
+};
 </script>
 
 <style lang="scss">
 .skill-popover {
-
   color: #333054;
   padding: 12px 15px;
   text-align: left;

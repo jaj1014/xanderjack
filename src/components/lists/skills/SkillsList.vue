@@ -1,6 +1,6 @@
 <template>
   <ul id="skills-list">
-    <skill-item v-for="skill in skillsArr" :key="skill.name" :skill="skill"></skill-item>
+    <skill-item v-for="skill in skills" :key="skill.name" :skill="skill"></skill-item>
   </ul>
 </template>
 
@@ -8,19 +8,14 @@
 import SkillItem from "./elements/SkillItem";
 
 export default {
-  name: "skill-list",
+  name: "skills-list",
   components: {
     SkillItem
   },
   props: {
     skills: Array
-  },
-  computed: {
-    skillsArr() {
-      return this.skills
-    }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

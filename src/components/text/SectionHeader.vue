@@ -3,25 +3,27 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'section-header',
+  name: "section-header",
   props: {
     text: String,
     tag: String
   },
   computed: {
     ...mapGetters({
-      header: 'theme/header',
-      subText: 'theme/heroSubText'
+      header: "theme/header",
+      subText: "theme/heroSubText"
     }),
     headerStyle() {
-      return this.tag !== 'h4' ? this.header.color : this.subText.color
+      return this.tag !== "h4" ? this.header.color : this.subText.color;
     },
     displayHeader() {
-      return `<${this.tag} style="color: ${this.headerStyle}">${this.text}</${this.tag}>`
+      return `<${this.tag} style="color: ${this.headerStyle}">
+          ${this.text}
+        </${this.tag}>`;
     }
   }
-}
+};
 </script>

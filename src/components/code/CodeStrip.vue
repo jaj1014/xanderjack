@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import SnippetBlock from "./elements/SnippetBlock"
+import SnippetBlock from "./elements/SnippetBlock";
 
-let windowHeight = window.innerHeight
-const handleResize = e => windowHeight = e.target.innerHeight
-window.addEventListener("resize", handleResize)
+let windowHeight = window.innerHeight;
+const handleResize = e => (windowHeight = e.target.innerHeight);
+window.addEventListener("resize", handleResize);
 
 export default {
   name: "code-strip",
@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     blocksDisplayArr() {
-      return new Array(Math.ceil(windowHeight / 252))
+      return new Array(Math.ceil(windowHeight / 252));
     }
   },
   beforeDestroy() {
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  #code-strip {
-    margin-left: 8.125rem;
-  }
+#code-strip {
+  margin-left: 8.125rem;
+}
 </style>

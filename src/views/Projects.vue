@@ -1,27 +1,22 @@
 <template>
   <section id="projects">
-    <section-header :text="page.header" tag="h2"></section-header>
-    <article v-for="project in page.items" :key="project.name" class="projs-item">
-      <div class="projs-item__img"></div>
-      <div class="projs-item__text">
-        <h3>{{ project.header }}</h3>
-        <p>{{ project.desc }}</p>
-      </div>
-    </article>
+    <section-header :text="projects.header" tag="h2"></section-header>
+    <projects-list :projects="projects.items"></projects-list>
   </section>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
-import SectionHeader from '../components/text/SectionHeader'
+import SectionHeader from "../components/text/SectionHeader";
+import ProjectsList from "../components/lists/projects/ProjectsList";
 
 export default {
-  components: { SectionHeader },
+  components: { SectionHeader, ProjectsList },
   computed: mapState({
-    page: state => state.page.projects
+    projects: state => state.page.projects
   })
-}
+};
 </script>
 
 <style lang="scss">
