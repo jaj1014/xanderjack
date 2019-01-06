@@ -1,7 +1,7 @@
 <template>
   <li>
     <article>
-      <img :src="project.img" :alt="`Screenshot image of ${project.header}`">
+      <img :src="project.img" :alt="`Screenshot image of ${project.header}`" :style="imgShadow">
       <div>
         <section-header :text="project.header" tag="h3"></section-header>
         <p class="project-desc fnt-s" :style="textStyle">{{ project.desc }}</p>
@@ -25,11 +25,17 @@ export default {
   },
   computed: {
     ...mapGetters({
-      "bodyText": "theme/bodyText"
+      "bodyText": "theme/bodyText",
+      dropShadow: "theme/dropShadow"
     }),
     textStyle() {
       return {
         color: this.bodyText.color
+      };
+    },
+    imgShadow() {
+      return {
+        boxShadow: `2px 2px 10px ${this.dropShadow}`
       };
     }
   }
