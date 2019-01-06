@@ -1,12 +1,13 @@
 <template>
   <li>
-    <article>
+    <article @click="modalOpen = !modalOpen">
       <img :src="project.img" :alt="`Screenshot image of ${project.header}`" :style="imgShadow">
       <div>
         <section-header :text="project.header" tag="h3"></section-header>
         <p class="project-desc fnt-s" :style="textStyle">{{ project.desc }}</p>
       </div>
     </article>
+    <project-item-modal v-if="modalOpen" @outsideClick="modalOpen = !modalOpen"></project-item-modal>
   </li>
 </template>
 
@@ -14,18 +15,23 @@
 import { mapGetters } from "vuex";
 
 import SectionHeader from "../../../text/SectionHeader";
+import ProjectItemModal from "./ProjectItemModal";
 
 export default {
   name: "project-item",
   components: {
-    SectionHeader
+    SectionHeader,
+    ProjectItemModal
+  },
+  data() {
+    return { modalOpen: false };
   },
   props: {
     project: Object
   },
   computed: {
     ...mapGetters({
-      "bodyText": "theme/bodyText",
+      bodyText: "theme/bodyText",
       dropShadow: "theme/dropShadow"
     }),
     textStyle() {
@@ -49,7 +55,7 @@ article {
   justify-content: space-around;
 
   img {
-    height: 174px; 
+    height: 174px;
     margin-right: 3.75rem;
     width: 232px;
   }
