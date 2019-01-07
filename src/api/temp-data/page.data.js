@@ -64,6 +64,38 @@ export default [{
   projects: {
     header: 'projects.',
     items: [
+      // {
+        // header: 'professor-rhythm .',
+        // desc: "",
+        // img: "",
+        // detail: {
+        //   title: "",
+        //   hasLink: false,
+        //   href: "",
+        //   outline: {
+        //     p1: "",
+        //     p2: "",
+        //     p3: ""
+        //   },
+        //   technologies: [""]
+        // }
+      // },
+      // {
+      //   header: 'xanderjack.',
+      //   desc: "",
+      //   img: "",
+      //   detail: {
+      //     title: "",
+      //     hasLink: true,
+      //     href: "",
+      //     outline: {
+      //       p1: "",
+      //       p2: "",
+      //       p3: ""
+      //     },
+      //     technologies: [""]
+      //   }
+      // },
       {
         header: 'sphere.',
         desc: "A Title and Escrow software solution to assist in the real estate closing transactions.",
@@ -111,7 +143,23 @@ export default [{
           },
           technologies: ["html.", "sass.", "javascript.", "photoshop."]
         }
-      }
+      },
+      // {
+      //   header: 'numeralizer.',
+      //   desc: "",
+      //   img: "",
+      //   detail: {
+      //     title: "",
+      //     hasLink: true,
+      //     href: "",
+      //     outline: {
+      //       p1: "",
+      //       p2: "",
+      //       p3: ""
+      //     },
+      //     technologies: [""]
+      //   }
+      // }
     ]
   }
 }]
