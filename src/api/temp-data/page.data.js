@@ -51,7 +51,7 @@ export default [{
         { name: 'hapijs.', detail: "When I came across hapi, I found it really interesting. As another rest api framework, I've found it enjoyable to play with and will eventually find a project where I can use it.", use: 'tinkering' },
         { name: 'git.', detail: "Basic stuff - git add, git commit, git push - I've used this to manage my personal projects and keep them in sync through bitbucket.", use: 'hobby projects' },
         { name: 'bitbucket.', detail: "Where I manage my personal projects.", use: 'hobby projects' },
-        { name: 'react.', detail: "I have built some smaller apps with React and really enjoyed it. It was the first front end framework that I used for a project.", use: 'hobby projects' },
+        { name: 'react.', detail: "I have built some smaller apps with React and really enjoy it. It was the first front end framework that I used for a project.", use: 'hobby projects' },
         { name: 'vue.', detail: "This is the framework behind my current website (the one you're looking at). It's really enjoyable - both for simple projects and extendable for more complex ones.", use: 'hobby projects' },
         { name: 'linux.', detail: "My OS of choice - Ubuntu flavors, mostly. Currently, I use elementaryOS on my personal dev box.", use: 'hobby projects' },
         { name: 'unix.', detail: "macOS - this is where I learned to develop.", use: 'hobby projects' },
@@ -64,9 +64,54 @@ export default [{
   projects: {
     header: 'projects.',
     items: [
-      { header: 'sphere.', desc: "Sphere is Softpro's cloud-based, Title and Escrow software solution currently under development and beta testing. This is the product I am currently working on.", img: 'https://www.fillmurray.com/232/174', detail: {} },
-      { header: 'singl.link.', desc: "singl.link is a project I created for managing link favorites between browsers - you just have to remember a single link (see what I did that?)", img: 'https://www.fillmurray.com/232/174', detail: {} },
-      { header: 'ferraro.', desc: "A while back, I was connected to a friend of a friend who was in need of a website for her Licensed Professional Counseling work. This is the site I designed and coded for her.", img: 'https://www.fillmurray.com/232/174', detail: {} }
+      {
+        header: 'sphere.',
+        desc: "A Title and Escrow software solution to assist in the real estate closing transactions.",
+        img: 'https://www.fillmurray.com/232/174',
+        detail: {
+          title: "sphere.",
+          hasLink: false,
+          href: "under development",
+          outline: {
+            p1: "Sphere is the working name of the application on which I work at Softpro. The application is being design from the ground-up to provide a cloud-based alternative to our existing software solution, Select.",
+            p2: "The project shares some architectural similarities to the current Select offering (written in C#/.NET) and retooled into microservices. This is all exposed via a rest api which we consume as our client side 'model'.",
+            p3: "My work focuses on the client side writing custom components and interactions designed in collaboration with our UI/UX designer."
+          },
+          technologies: ["angular.", "typescript.", "es6.", "sass.", "html.", "jwt.", "jasmine,", "karma.", "azure devops.", "webpack.", "windows."]
+        }
+      },
+      {
+        header: 'singl.link.',
+        desc: "A project designed to make cross-browser bookmark management easier.",
+        img: 'https://www.fillmurray.com/232/174',
+        detail: {
+          title: "singl.link",
+          hasLink: true,
+          href: "http://www.singl.link/#/",
+          outline: {
+            p1: "singl.link was a personal project developed while I was learning React a little while back. The problem I faced was having to maintain links.",
+            p2: "Traditional methods broke down when I'd swap between browsers. I'd add something in one place and it wouldn't exist in another. Not to mention always having to log in. At work I'd have certain tabs for work accounts - then there were links I'd have for my personal accounts etc.. I needed one place - a single link to remember. singl.link was my solution.",
+            p3: "My development process, since it was a personal project, was relatively simple. I decided on a couple criteria - ability to easily enter links and the option to add tags for organization. With that I began designing and then coded up the solution."
+          },
+          technologies: ["react.", "javascript.", "es6.", "sass.", "html.", "node.", "mongoose.", "jwt.", "mongodb.", "webpack.", "sketch.", "git.", "express.", "unix."]
+        }
+      },
+      {
+        header: 'ferraro.',
+        desc: "A simple, informational website for a Licensed Professional Counseler.",
+        img: 'https://www.fillmurray.com/232/174',
+        detail: {
+          title: "ferraro.",
+          hasLink: true,
+          href: "http://www.kellyferrarolpc.com/",
+          outline: {
+            p1: "This site was an informational site designed and developed for a friend of a friend who was restarting her Licensed Professional Counseling work.",
+            p2: "I began working with Kelly by going through a simple series of questions to understand how she planned to utilize the site. Once we understood the basics, it was decided that we'd go simple and informative rather than trying to build something which would require maintenance and upkeep, such as a blog or full-fledge CMS.",
+            p4: "After working through some low-fi mockups, she decided on a single page layout with a calm, nature type feel. I spun up 2 different designs using photoshop so Kelly would have a choice on the imagery used. In the end, she decided on what you see today."
+          },
+          technologies: ["html.", "sass.", "javascript.", "photoshop."]
+        }
+      }
     ]
   }
 }]

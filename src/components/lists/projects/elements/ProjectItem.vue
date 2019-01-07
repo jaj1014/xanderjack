@@ -50,6 +50,7 @@ export default {
 
 <style lang="scss" scoped>
 article {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
