@@ -7,7 +7,7 @@
         <p class="project-desc fnt-s" :style="textStyle">{{ project.desc }}</p>
       </div>
     </article>
-    <project-item-modal v-if="modalOpen" @outsideClick="modalOpen = !modalOpen"></project-item-modal>
+    <project-item-modal v-if="modalOpen" :projectDetail="project.detail" @outsideClick="modalOpen = !modalOpen"></project-item-modal>
   </li>
 </template>
 
@@ -53,6 +53,7 @@ article {
   cursor: pointer;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-around;
 
   img {

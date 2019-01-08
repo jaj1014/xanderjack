@@ -1,17 +1,37 @@
 <template>
   <div class="modal-bg">
-    <div class="modal-body">
-      sometext
+    <div class="modal-body" :style="modalBodyStyle">
+      <section-header :text="projectDetail.title" tag="h3"></section-header>
+      <section-desc :text="projectDetail.outline"></section-desc>
       <button @click="$emit('outsideClick')">Close</button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
+import SectionHeader from "../../../text/SectionHeader";
+import SectionDesc from "../../../text/SectionDesc";
+
 export default {
   name: "project-item-modal",
+  components: {
+    SectionHeader,
+    SectionDesc
+  },
   props: {
     projectDetail: Object
+  },
+  computed: {
+    ...mapGetters({
+      background: "theme/background"
+    }),
+    modalBodyStyle() {
+      return {
+        backgroundColor: this.background.color
+      };
+    }
   }
 };
 </script>
@@ -31,10 +51,9 @@ export default {
 }
 
 .modal-body {
-  background-color: #fff; // TODO: replace ...
   border-radius: 0.25rem;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.25);
-  height: 40vh;
+  padding: 2rem;
   width: 30vw;
   z-index: 9999;
 }

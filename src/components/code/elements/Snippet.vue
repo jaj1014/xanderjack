@@ -75,6 +75,11 @@ export default {
   height: 8px;
   margin-bottom: 6px;
   margin-right: 10px;
+  transition: all 100ms linear;
+
+  &:hover {
+    transform: scale(1.3, 1.75);
+  }
 }
 
 .vc-chrome {
