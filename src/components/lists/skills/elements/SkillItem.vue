@@ -56,5 +56,10 @@ export default {
   display: inline-block;
   padding: 0.1875rem 0.9375rem;
   margin: 0 0.9375rem 0.9375rem 0;
+  transition: all 25ms linear;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 </style>
