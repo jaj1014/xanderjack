@@ -11,9 +11,8 @@
       <span @click="$emit('menuLinkClick')">
         {{item.name}}.
         <span
-          v-show="item.path === $route.path"
           class="menu-item-underline"
-          :style="menuItemUnderlineStyle"
+          :style="item.path === $route.path ? itemUnderlineActive : itemUnderline"
         ></span>
       </span>
     </router-link>
@@ -34,16 +33,22 @@ export default {
     }),
     ...mapGetters({
       menuText: "theme/menuText",
-      accent: "theme/accent"
+      accent: "theme/accent",
+      darkPrime: "theme/darkPrime"
     }),
     menuItemStyle() {
       return {
         color: this.menuText.color
       };
     },
-    menuItemUnderlineStyle() {
+    itemUnderlineActive() {
       return {
         backgroundColor: this.accent.color
+      };
+    },
+    itemUnderline() {
+      return {
+        backgroundColor: this.darkPrime.color
       };
     }
   }
@@ -83,6 +88,6 @@ nav {
 
 .menu-item-underline {
   height: 8px;
-  width: 100%;
+  margin-top: -1rem;
 }
 </style>

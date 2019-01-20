@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li >
     <article @click="modalOpen = !modalOpen">
       <img :src="project.img" :alt="`Screenshot image of ${project.header}`" :style="imgShadow">
       <div>
@@ -7,7 +7,9 @@
         <p class="project-desc fnt-s" :style="textStyle">{{ project.desc }}</p>
       </div>
     </article>
-    <project-item-modal v-if="modalOpen" :projectDetail="project.detail" @outsideClick="modalOpen = !modalOpen"></project-item-modal>
+    <transition name="modal">
+      <project-item-modal v-if="modalOpen" :projectDetail="project.detail" @outsideClick="modalOpen = !modalOpen"></project-item-modal>
+    </transition>
   </li>
 </template>
 
@@ -57,9 +59,7 @@ article {
   justify-content: space-around;
 
   img {
-    height: 174px;
     margin-right: 3.75rem;
-    width: 232px;
   }
 
   .project-desc {

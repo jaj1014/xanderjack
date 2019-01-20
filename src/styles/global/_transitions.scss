@@ -1,0 +1,23 @@
+.modal-enter-active {
+  transition: opacity 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  .modal-body {
+    transition: transform 0.2s ease-out;
+  }
+}
+
+.modal-leave-active {
+  transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  .modal-body {
+    transition: none;
+  }
+}
+
+.modal-enter, .modal-leave-to {
+  opacity: 0;
+
+  .modal-body {
+    transform: scale(0, 0);
+  }
+}
