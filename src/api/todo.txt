@@ -1,0 +1,8 @@
+- make responsive - clean up grid? @media queries? ... 
+- figure out contact - email? backend work? etc. - leaning towards sharing Dribbble, Github, and Linkedin - email as well? jaj1014 [at] gmail [dot] com
+- finish up portfolio work - images, add links, etc
+- figure out 'API' bits for pushing theme and page data down
+- figure out hosting and CI/CD (devops) - look at using docker? node for API? bitbucket CI/CD might be fun to play with.
+- QA to make sure there aren't huge typos or odd behaviors
+- cross browser support - adding autoprefixer into vue flow
+- start working on professor rhythm project to beef up portfolios
