@@ -1,11 +1,10 @@
 <template>
   <div id="app" :style="bodyStyle">
     <div class="left-container">
-      <main-nav></main-nav>
       <actions></actions>
     </div>
     <main>
-      <router-view></router-view>
+      <home></home>
     </main>
     <div class="right-container">
       <code-strip></code-strip>
@@ -16,14 +15,14 @@
 <script>
 import { mapGetters } from "vuex";
 
-import MainNav from "./components/main-nav/MainNav";
+import Home from './views/Home'
 import Actions from "./components/actions/Actions";
 import CodeStrip from "./components/code/CodeStrip";
 
 export default {
   name: "app",
   components: {
-    MainNav,
+    Home,
     Actions,
     CodeStrip
   },
