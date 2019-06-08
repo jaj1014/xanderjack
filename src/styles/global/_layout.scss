@@ -1,0 +1,80 @@
+#app-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  overflow: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.left-container {
+  flex: 0 0 18.75%;
+}
+
+.main-content {
+  align-self: center;
+  flex: 0 0 57.5%;
+}
+
+.right-container {
+  align-items: center;
+  overflow: hidden;
+}
+
+.content-section {
+  margin-bottom: 7.5rem; // 120px
+}
+
+// Tablet
+@media screen and (min-width: 768px) {
+  .left-container {
+    flex: 0 0 19.53%;
+  }
+
+  .main-content{
+    flex: 0 0 52.2135%;
+  }
+}
+
+// Legacy / Medium Screens
+@media screen and (min-width: 960px) {
+  .left-container {
+    flex: 0 0 15.625%;
+  }
+
+  .main-content{
+    flex: 0 0 56.77%;
+  }
+
+  .content-section {
+    margin-bottom: 10rem; // 160px
+  }
+}
+
+// Standard / Large Screens
+@media screen and (min-width: 1280px) {
+  .left-container {
+    width: 13.28125%;
+  }
+
+  .main-content{
+    width: 58.2%;
+  }
+}
+
+// Extra Large+
+@media screen and (min-width: 1690px) {
+  .left-container {
+    width: 10.059%;
+  }
+
+  .main-content{
+    width: 59.76%;
+  }
+
+  .content-section {
+    margin-bottom: 15rem; // 240px
+  }
+}

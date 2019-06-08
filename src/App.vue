@@ -1,9 +1,9 @@
 <template>
-  <div id="app" :style="bodyStyle">
+  <div id="app-container" :style="bodyStyle">
     <div class="left-container">
       <actions></actions>
     </div>
-    <main>
+    <main class="main-content">
       <home></home>
     </main>
     <div class="right-container">
@@ -36,33 +36,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-#app {
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  overflow: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  .left-container {
-    width: 11.8%;
-  }
-
-  main {
-    align-items: center;
-    display: flex;
-    width: 45.8333%;
-  }
-
-  .right-container {
-    align-items: center;
-    display: flex;
-    overflow: hidden;
-    width: 42.3667%;
-  }
-}
-</style>
