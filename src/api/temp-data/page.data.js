@@ -1,4 +1,15 @@
 export default [ {
+  phrases: [
+    'tinker-er',
+    'problem solver',
+    'creator',
+    'googler',
+    'student'
+  ],
+  contact: {
+    github: 'https://github.com/jaj1014',
+    linkedIn: 'https://www.linkedin.com/in/alex-jackson-98000643'
+  },
   skills: [
     { name: 'javascript.', detail: "I've been working with Javascript for the past 4 years. I know my way around closures, coercion, and other fun js offers.", use: 'production' },
     { name: 'typescript.', detail: 'I use typescript in my current role going on 2 years. It’s been super helpful in alleviating type bugs and providing intellisense to speed up dev work.', use: 'production' },

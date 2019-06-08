@@ -7,7 +7,7 @@
     </h1>
     <h4 :style="subTextStyle">
       My job title says Front End Engineer, but I like to think of myself as a
-      <span class="bold">tinker..er</span>
+      <typing-text></typing-text>
     </h4>
 
   </section>
@@ -16,7 +16,10 @@
 <script>
 import { mapGetters } from "vuex";
 
+import TypingText from '../components/text/TypingText'
+
 export default {
+  components: { TypingText },
   computed: {
     ...mapGetters({
       header: "theme/header",

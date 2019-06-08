@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 import Home from './views/Home'
 import Actions from "./components/actions/Actions";
@@ -27,12 +27,21 @@ export default {
     CodeStrip
   },
   computed: {
+    ...mapState({
+      personalInfo: state => state.page
+    }),
     ...mapGetters({
       background: "theme/background"
     }),
     bodyStyle() {
       return { backgroundColor: this.background.color };
     }
+  },
+  created () {
+    const contact = { ...this.personalInfo.contact };
+    const skills = { ...this.personalInfo.skills.map(skill => ({ ...skill })) };
+
+    window.__personal_information__ = { contact, skills };
   }
 };
 </script>
