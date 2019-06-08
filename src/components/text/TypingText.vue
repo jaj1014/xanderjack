@@ -35,30 +35,30 @@ export default {
         }
     },
     mounted () {
-        setTimeout(this.typeWriter, this.speed);
+        setTimeout(this.typeWriter, this.speed)
     },
     methods: {
         typeWriter () {
             if (this.pos < this.phrases[this.turn].length) {
-                this.text += this.phrases[this.turn].charAt(this.pos);
-                this.pos++;
-                setTimeout(this.typeWriter, this.speed);
+                this.text += this.phrases[this.turn].charAt(this.pos)
+                this.pos++
+                setTimeout(this.typeWriter, this.speed)
             } else {
-                setTimeout(this.erase, this.speed + 100);
+                setTimeout(this.erase, this.speed + 100)
             }
         },
         erase () {
             if (this.pos >= 0) {
-                let str = this.phrases[this.turn].toString().substring(0, this.pos);
-                this.text = str;
-                this.pos--;
-                setTimeout(this.erase, this.speed - 100);
+                let str = this.phrases[this.turn].toString().substring(0, this.pos)
+                this.text = str
+                this.pos--
+                setTimeout(this.erase, this.speed - 100)
             } else {
-                this.turn++;
+                this.turn++
                 if(this.turn >= this.phrases.length) {
-                    this.turn=0;
+                    this.turn = 0
                 }
-                setTimeout(this.typeWriter, this.speed);
+                setTimeout(this.typeWriter, this.speed)
             }
         }
     }
