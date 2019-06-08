@@ -1,21 +1,14 @@
 export default {
   darkPrime: state => state.isDarkTheme ? state.colors.color6 : state.colors.color1,
-  medPrime: state => state.isDarkTheme ? state.colors.color7 : state.colors.color2,
   codeMedPrime: state => state.colors.color2,
   lightPrime: state => state.colors.color3,
   darkNeutral: state => state.colors.color4,
-  medNeutral: state => state.colors.color4,
   lightNeutral: state => state.isDarkTheme ? state.colors.color1 : state.colors.color6,
   accent: state => state.colors.color7,
-  menuText: state => state.isDarkTheme ? state.colors.color1 : state.colors.color6,
   background: state => state.isDarkTheme ? state.colors.color1 : state.colors.color6,
   header: state => state.isDarkTheme ? state.colors.color6 : state.colors.color1,
   heroSubText: state => state.isDarkTheme ? state.colors.color7 : state.colors.color2,
-  bodyText: state => state.isDarkTheme ? state.colors.color6 : state.colors.color2,
-  skillChip: state => state.isDarkTheme ? state.colors.color2 : state.colors.color3,
-  skillChipText: state => state.colors.color6,
   actionBackground: state => state.isDarkTheme ? state.colors.color6 : state.colors.color2,
   actionIcon: state => state.isDarkTheme ? state.colors.color2 : state.colors.color6,
-  href: state => state.isDarkTheme ? state.colors.color7 : state.colors.color3,
   dropShadow: state => state.isDarkTheme ? state.colors.shadow2 : state.colors.shadow1
 }

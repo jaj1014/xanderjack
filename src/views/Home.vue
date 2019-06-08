@@ -1,28 +1,43 @@
 <template>
   <section id="home">
-    <section-header :text="page.header" tag="h1"></section-header>
-    <section-header :text="page.subText" tag="h4"></section-header>
+    <h1 :style="headerStyle">
+      hello,
+      <br>
+      i'm alex jackson.
+    </h1>
+    <h4 :style="subTextStyle">
+      My job title says Front End Engineer, but I like to think of myself as a
+      <span class="bold">tinker..er</span>
+    </h4>
+
   </section>
 </template>
 
 <script>
-import { mapState } from "vuex";
-
-import SectionHeader from "../components/text/SectionHeader";
+import { mapGetters } from "vuex";
 
 export default {
-  components: { SectionHeader },
   computed: {
-    ...mapState({
-      page: state => state.page.home
-    })
+    ...mapGetters({
+      header: "theme/header",
+      subText: "theme/heroSubText"
+    }),
+    headerStyle() {
+      return {
+        color: this.header.color
+      }
+    },
+    subTextStyle() {
+      return {
+        color: this.subText.color
+      }
+    },
   }
 };
 </script>
 
 <style lang="scss">
 #home {
-  text-align: center;
   width: 100%;
 }
 </style>

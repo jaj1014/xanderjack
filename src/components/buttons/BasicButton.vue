@@ -1,5 +1,5 @@
 <template>
-  <button class="basic-btn fnt-main fnt-xs" @click="$emit('click')">{{ title }}</button>
+  <button class="basic-btn" @click="$emit('click')">{{ title }}</button>
 </template>
 
 <script>
@@ -26,6 +26,9 @@ export default {
     border: none;
     border-radius: 0.25rem;
     cursor: pointer;
+    font-family: 'Montserrat', 'Verdana', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
     padding: 0.75em;
     margin: 0.53em 0.25em;
     transition: all ease-in-out 200ms;
