@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { initPendo } from  './vendor/pendo'
+// import { initPendo } from  './vendor/pendo'
 import { mapGetters, mapState } from "vuex"
 
 import Home from './views/Home'
@@ -39,7 +39,7 @@ export default {
     }
   },
   beforeCreate () {
-    initPendo()
+    // initPendo()
   },
   created () {
     const contact = { ...this.personalInfo.contact };
