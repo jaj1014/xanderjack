@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { initPendo } from  './vendor/pendo'
 import { mapGetters, mapState } from "vuex"
 
 import Home from './views/Home'
@@ -36,6 +37,9 @@ export default {
     bodyStyle() {
       return { backgroundColor: this.background.color };
     }
+  },
+  beforeCreate () {
+    initPendo()
   },
   created () {
     const contact = { ...this.personalInfo.contact };
