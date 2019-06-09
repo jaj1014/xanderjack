@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { initPendo } from  './vendor/pendo'
+import { getPendo, initPendo } from  './vendor/pendo'
 import { mapGetters, mapState } from "vuex"
 
 import Home from './views/Home'
@@ -38,10 +38,11 @@ export default {
       return { backgroundColor: this.background.color };
     }
   },
-  beforeCreate () {
-    initPendo()
+  beforeMount () {
+    getPendo('179c9d85-7d58-469c-7566-b166303c6e6f')
   },
   created () {
+    initPendo()
     const contact = { ...this.personalInfo.contact };
     const skills = { ...this.personalInfo.skills.map(skill => ({ ...skill })) };
 
