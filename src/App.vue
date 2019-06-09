@@ -38,7 +38,7 @@ export default {
       return { backgroundColor: this.background.color };
     }
   },
-  beforeMount () {
+  beforeCreate () {
     getPendo('179c9d85-7d58-469c-7566-b166303c6e6f')
   },
   created () {

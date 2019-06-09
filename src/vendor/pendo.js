@@ -7,5 +7,12 @@ export const getPendo = function(apiKey) {
 };
 
 export const initPendo = function () {
-
+    window.pendo.initialize({
+        visitor: {
+            id: 'VISITOR-UNIQUE-ID'
+        },
+        account: {
+            id: 'ACCOUNT-UNIQUE-ID'
+        }
+    })
 }
