@@ -68,7 +68,7 @@ export default {
       window.pendo.initialize({
         visitor: {
           id: user,
-          language: lang
+          user_language: lang
         },
         account: {
           id: account
