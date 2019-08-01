@@ -5,24 +5,25 @@ import './styles/main.scss'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from './store'
-
 // Vendor js
 import VueTippy from 'vue-tippy'
-Vue.use(VueTippy)
+// Component App Imports
+import Xanderjack from './app-pages/Xanderjack'
+import BoardFootCalculator from './app-pages/BoardFootCalculator'
 
-// Component Imports
-import App from './App'
-import BoardFootCalculator from './views/BoardFootCalculator'
+// Use
+Vue.use(VueTippy)
+Vue.use(VueRouter)
 
 // Routes
 const routes = [
-  { path: '/', component: App },
-  { path: '/board-foot-calculator', component: BoardFootCalculator }
+  { path: '', name: 'xanderjack', component: Xanderjack },
+  { path: '/board-foot-calculator', name:'boardFootCalculator', component: BoardFootCalculator }
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes,
-  mode: 'history'
 })
 
 Vue.config.productionTip = false
@@ -31,5 +32,5 @@ new Vue({
   el: '#app',
   store,
   router,
-  render: h => h(App),
+  render: h => h('router-view'),
 })
