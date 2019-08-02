@@ -76,6 +76,7 @@ export default {
       })
 
       window.pendo.events.validateGuide(function onValidateGuide(hashableGuideString) {
+        debugger;
         console.log(hashableGuideString)
         return true
       })
