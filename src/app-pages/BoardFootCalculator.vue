@@ -74,6 +74,10 @@ export default {
           id: account
         }
       })
+
+      window.pendo.events.validateGuide(function onValidateGuide(hashableGuideString) {
+        console.log(hashableGuideString)
+      })
     }
   }
 };
