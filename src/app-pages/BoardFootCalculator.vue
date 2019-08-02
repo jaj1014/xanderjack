@@ -58,8 +58,8 @@ export default {
     }
   },
   beforeMount() {
-    const prompt = window.prompt("Please enter a userid, acocuntid, language, validateGuide", "harry-potter, gryffindor, en-US, success")
-    const [user, account, lang, validateGuide] = prompt.split(',')
+    const promptData = window.prompt("Please enter a userid, acocuntid, language, validateGuide", "harry-potter, gryffindor, en-US, success")
+    const [user, account, lang, validateGuide] = promptData.split(',')
 
     this.initPendo(user, account, lang, validateGuide)
   },
