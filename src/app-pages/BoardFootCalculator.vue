@@ -58,7 +58,7 @@ export default {
     }
   },
   beforeMount() {
-    const promptData = window.prompt("Please enter a userid, acocuntid, language, validateGuide", "harry-potter, gryffindor, en-US, success")
+    const promptData = window.prompt("Please enter a userid, acocuntid, language, validateGuide", "harry-potter,gryffindor,en-US,success")
     const [user, account, lang, validateGuide] = promptData.replace(' ', '').split(',')
 
     this.initPendo(user, account, lang, validateGuide)
