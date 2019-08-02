@@ -58,14 +58,12 @@ export default {
     }
   },
   beforeMount() {
-    const user = window.prompt("Please enter a user id", "harry-potter");
-    const account = window.prompt("Please enter an account id", "gryffindor");
-    const lang = window.prompt("Please enter a valid lang code", "en-US");
+    const [user, account, lang, validateGuide] = window.prompt("Please enter a userid, acocuntid, language, validateGuide", "harry-potter, gryffindor, en-US, success").splt(',');
 
-    this.initPendo(user, account, lang);
+    this.initPendo(user, account, lang, validateGuide);
   },
   methods: {
-    initPendo(user, account, lang) {
+    initPendo(user, account, lang, validateGuide) {
       window.pendo.initialize({
         visitor: {
           id: user,
@@ -77,7 +75,7 @@ export default {
         events: {
           validateGuide: hashableGuideString => {
             console.log(hashableGuideString);
-            return false;
+            return validateGuide === 'success';
           }
         }
       });
