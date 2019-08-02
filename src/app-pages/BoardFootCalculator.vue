@@ -56,7 +56,7 @@ export default {
       return (this.boardWidth * this.actualLength * this.boardThickness) / 144;
     }
   },
-  created () {
+  beforeMount () {
     const user = window.prompt('Please enter a user id', 'harry-potter')
     const account = window.prompt('Please enter an account id', 'gryffindor')
     const lang = window.prompt('Please enter a valid lang code', 'en-US')
@@ -76,9 +76,8 @@ export default {
       })
 
       window.pendo.events.validateGuide(function onValidateGuide(hashableGuideString) {
-        debugger;
         console.log(hashableGuideString)
-        return true
+        return false
       })
     }
   }
