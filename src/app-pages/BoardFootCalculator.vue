@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { setInterval, clearInterval } from 'timers';
+import { setInterval, clearInterval } from "timers";
 export default {
   name: "board-foot-calculator",
   data() {
@@ -63,13 +63,6 @@ export default {
     const lang = window.prompt("Please enter a valid lang code", "en-US");
 
     this.initPendo(user, account, lang);
-
-    const interval = setInterval(() => {
-      if (window.pendo.events) {
-        this.wireUpGuideValidation();
-        clearInterval(interval);
-      }
-    }, 100)
   },
   methods: {
     initPendo(user, account, lang) {
@@ -82,18 +75,11 @@ export default {
           id: account
         },
         events: {
-          validateGuide: () => {
-
+          validateGuide: hashableGuideString => {
+            console.log(hashableGuideString);
+            return false;
           }
         }
-      });
-    },
-    wireUpGuideValidation () {
-      window.pendo.events.validateGuide(function onValidateGuide(
-        hashableGuideString
-      ) {
-        console.log(hashableGuideString);
-        return false;
       });
     }
   }
