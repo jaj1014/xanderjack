@@ -1,70 +1,103 @@
 <template>
-  <div class="wrapper">
+  <main class="wrapper">
     <fieldset>
       <legend>Board Cost</legend>
 
       <div class="form-group">
+        <label for="species">Type / Species</label>
+        <input v-model="form.species" type="text" name="species" />
+      </div>
+
+      <div class="form-group">
         <label for="boardFtCost">Cost / Board Foot</label>
-        <input v-model="boardFtCost" type="number" min="0" name="boardFtCost" />
+        <input v-model="form.boardFtCost" type="number" min="0" name="boardFtCost" />
       </div>
 
       <div class="form-group length-group">
         <div class="length-input">
           <label for="boardLength">Length</label>
-          <input v-model="boardLength" type="number" min="0" name="boardLength" />
+          <input v-model="form.boardLength" type="number" min="0" name="boardLength" />
         </div>
         <div class="checkbox">
-          <input v-model="lengthInFt" class="toggle-switch" type="checkbox" />
+          <input v-model="form.lengthInFt" class="toggle-switch" type="checkbox" />
         </div>
       </div>
 
       <div class="form-group">
         <label for="boardWidth">Width</label>
-        <input v-model="boardWidth" type="number" min="0" name="boardWidth" />
+        <input v-model="form.boardWidth" type="number" min="0" name="boardWidth" />
       </div>
 
       <div class="form-group">
         <label for="boardThickness">Thickness</label>
-        <input v-model="boardThickness" type="number" min="0" name="boardThickness" />
+        <input v-model="form.boardThickness" type="number" min="0" name="boardThickness" />
       </div>
 
-      <output>{{ cost }}</output>
+      <output>
+        <span>{{ cost }}</span>
+        <button @click="addSpeciesToShoppingList">Add to list</button>
+      </output>
     </fieldset>
-  </div>
+
+    <div class="list-container">
+      <p v-if="shoppingList.length === 0" >No items on your list</p>
+      <ul v-else>
+        <li v-for="item in shoppingList" :key="item.timestamp">
+          {{ item.species }} || {{ item.cost }}
+        </li>
+      </ul>
+    </div>
+  </main>
 </template>
 
 <script>
-import { setInterval, clearInterval } from "timers";
 export default {
   name: "board-foot-calculator",
-  data() {
+  data () {
     return {
-      boardFtCost: null,
-      boardLength: null,
-      lengthInFt: true,
-      boardWidth: null,
-      boardThickness: null
+      form: {
+        species: null,
+        boardFtCost: null,
+        boardLength: null,
+        lengthInFt: true,
+        boardWidth: null,
+        boardThickness: null
+      },
+      shoppingList: []
     };
   },
   computed: {
-    cost() {
-      return (this.boardFootage * this.boardFtCost).toFixed(2);
+    cost () {
+      return (this.boardFootage * this.form.boardFtCost).toFixed(2)
     },
-    actualLength() {
-      return this.lengthInFt ? this.boardLength * 12 : this.boardLength;
+    actualLength () {
+      return this.form.lengthInFt ? this.form.boardLength * 12 : this.form.boardLength
     },
-    boardFootage() {
-      return (this.boardWidth * this.actualLength * this.boardThickness) / 144;
+    boardFootage () {
+      return (this.form.boardWidth * this.actualLength * this.form.boardThickness) / 144
     }
   },
-  beforeMount() {
+  beforeMount () {
     const promptData = window.prompt("Please enter a userid, acocuntid, language, validateGuide", "harry-potter,gryffindor,en-US,success")
     const [user, account, lang, validateGuide] = promptData.replace(' ', '').split(',')
 
     this.initPendo(user, account, lang, validateGuide)
   },
   methods: {
-    initPendo(user, account, lang, validateGuide) {
+    addSpeciesToShoppingList () {
+      this.shoppingList.push({
+        cost: this.cost,
+        species: this.form.species,
+        timestamp: performance.now()
+      })
+      this.resetForm()
+    },
+    resetForm () {
+      for (let key in this.form) {
+        this.$set(this.form, key, null)
+      }
+    },
+    initPendo (user, account, lang, validateGuide) {
       window.pendo.initialize({
         visitor: {
           id: user,
@@ -75,11 +108,12 @@ export default {
         },
         events: {
           validateGuide: hashableGuideString => {
-            console.log(hashableGuideString);
-            return validateGuide === 'success';
+            // eslint-disable-next-line no-console
+            console.log(hashableGuideString)
+            return validateGuide === 'success'
           }
         }
-      });
+      })
     }
   }
 };
@@ -101,7 +135,9 @@ export default {
   width: 100vw;
 }
 
-fieldset {
+
+fieldset,
+.list-container {
   background-color: white;
   border-radius: 0.3rem;
   margin: 3rem auto;
@@ -125,10 +161,12 @@ label {
   padding-bottom: 0.25rem;
 }
 
+input[type="text"]:focus,
 input[type="number"]:focus {
   outline: 3px solid lightslategrey;
 }
 
+input[type="text"],
 input[type="number"] {
   font-family: monospace;
   font-size: 2rem;
