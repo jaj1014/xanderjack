@@ -35,7 +35,7 @@
 
       <output>
         <span>{{ cost }}</span>
-        <button @click="addSpeciesToShoppingList">Add to list</button>
+        <button @click="addSpeciesToShoppingList" :disabled="missingRequired">Add to list</button>
       </output>
     </fieldset>
 
@@ -75,6 +75,9 @@ export default {
     },
     boardFootage () {
       return (this.form.boardWidth * this.actualLength * this.form.boardThickness) / 144
+    },
+    missingRequired () {
+      return !(this.cost > 0 && this.form.species)
     }
   },
   beforeMount () {
@@ -116,7 +119,7 @@ export default {
       })
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -159,6 +162,10 @@ label {
   font-size: 1.45rem;
   display: block;
   padding-bottom: 0.25rem;
+}
+
+input[type="number"] {
+  text-align: right;
 }
 
 input[type="text"]:focus,
@@ -239,11 +246,45 @@ input.toggle-switch:checked:after {
 }
 
 output {
-  display: block;
-  float: right;
   font-family: monospace;
   font-size: 2rem;
   margin-top: 2rem;
   margin-right: 2rem;
+  width: 100%;
 }
+
+output > span {
+  display: block;
+  text-align: right;
+  width: 100%;
+}
+
+output > button {
+  border: 1px solid black;
+  border-radius: 3px;
+  box-shadow: 4px 4px black;
+  display: block;
+  margin-top: 3rem;
+  padding: 8px 16px;
+  width: 100%;
+}
+
+output > button:hover {
+  outline: purple;
+  box-shadow: 3px 3px black;
+}
+
+output > button:focus {
+  outline: whitesmoke;
+  box-shadow: 3px 3px black;
+}
+
+output > button:active {
+  box-shadow: none;
+}
+
+output > button:disabled {
+  background-color: whitesmoke;
+}
+
 </style>
