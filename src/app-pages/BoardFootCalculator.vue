@@ -319,7 +319,8 @@ output > button:disabled {
   list-style: none;
 }
 
-.list-container li {
+.list-container li,
+.list-container p {
   border: 2px dashed gainsboro;
   display: flex;
   justify-content: space-between;
