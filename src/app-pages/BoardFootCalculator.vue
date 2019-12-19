@@ -1,11 +1,11 @@
 <template>
   <main class="wrapper">
-    <fieldset>
+    <fieldset @keyup.enter="addSpeciesToShoppingList">
       <legend>Board Cost</legend>
 
       <div class="form-group">
         <label for="species">Type / Species</label>
-        <input v-model="form.species" type="text" name="species" />
+        <input v-model="form.species" :ref="speciesInput" type="text" name="species" />
       </div>
 
       <div class="form-group">
@@ -42,8 +42,13 @@
     <div class="list-container">
       <p v-if="shoppingList.length === 0" >No items on your list</p>
       <ul v-else>
-        <li v-for="item in shoppingList" :key="item.timestamp">
-          {{ item.species }} || {{ item.cost }}
+        <li v-for="(item, index) in shoppingList" :key="item.timestamp">
+          <span>{{ getListItemText(index) }}</span>
+          <span>{{ item.cost }}</span>
+        </li>
+        <li>
+          <strong>TOTAL:</strong>
+          <span>{{ shoppingListTotal }}</span>
         </li>
       </ul>
     </div>
@@ -55,6 +60,7 @@ export default {
   name: "board-foot-calculator",
   data () {
     return {
+      speciesInput: 'speciesInput',
       form: {
         species: null,
         boardFtCost: null,
@@ -78,6 +84,9 @@ export default {
     },
     missingRequired () {
       return !(this.cost > 0 && this.form.species)
+    },
+    shoppingListTotal () {
+      return this.shoppingList.reduce((total, item) => Number(item.cost) + total, 0).toFixed(2)
     }
   },
   beforeMount () {
@@ -86,8 +95,16 @@ export default {
 
     this.initPendo(user, account, lang, validateGuide)
   },
+  mounted () {
+    this.focusSpeciesInput();
+  },
   methods: {
+    focusSpeciesInput () {
+      this.$refs[this.speciesInput].focus();
+    },
     addSpeciesToShoppingList () {
+      if (this.missingRequired) return
+
       this.shoppingList.push({
         cost: this.cost,
         species: this.form.species,
@@ -97,8 +114,18 @@ export default {
     },
     resetForm () {
       for (let key in this.form) {
-        this.$set(this.form, key, null)
+        if (key !== 'lengthInFt') {
+          this.$set(this.form, key, null)
+        }
       }
+
+      this.focusSpeciesInput();
+    },
+    getListItemText (index) {
+      const item = this.shoppingList[index]
+      const itemListNumber = index < 9 ? `0${index + 1}` : `${index + 1}`
+
+      return `${itemListNumber} ${item.species}`
     },
     initPendo (user, account, lang, validateGuide) {
       window.pendo.initialize({
@@ -264,7 +291,8 @@ output > button {
   border-radius: 3px;
   box-shadow: 4px 4px black;
   display: block;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
+  margin-bottom: -1.75rem;
   padding: 8px 16px;
   width: 100%;
 }
@@ -285,6 +313,27 @@ output > button:active {
 
 output > button:disabled {
   background-color: whitesmoke;
+}
+
+.list-container > ul {
+  list-style: none;
+}
+
+.list-container li {
+  border: 2px dashed gainsboro;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+.list-container li:last-of-type {
+  border: none;
+  border-top: 3px solid black;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
 }
 
 </style>
