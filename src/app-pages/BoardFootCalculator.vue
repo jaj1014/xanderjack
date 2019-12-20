@@ -56,6 +56,8 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapState } from 'vuex'
+
 export default {
   name: "board-foot-calculator",
   data () {
@@ -68,11 +70,16 @@ export default {
         lengthInFt: true,
         boardWidth: null,
         boardThickness: null
-      },
-      shoppingList: []
+      }
     };
   },
   computed: {
+    ...mapState(({
+      shoppingList: state => state.boardFootCalculator.shoppingList
+    })),
+    ...mapGetters('boardFootCalculator', [
+      'shoppingListTotal'
+    ]),
     cost () {
       return (this.boardFootage * this.form.boardFtCost).toFixed(2)
     },
@@ -84,9 +91,6 @@ export default {
     },
     missingRequired () {
       return !(this.cost > 0 && this.form.species)
-    },
-    shoppingListTotal () {
-      return this.shoppingList.reduce((total, item) => Number(item.cost) + total, 0).toFixed(2)
     }
   },
   beforeMount () {
@@ -99,13 +103,14 @@ export default {
     this.focusSpeciesInput();
   },
   methods: {
+    ...mapActions('boardFootCalculator', [ 'addItem' ]),
     focusSpeciesInput () {
       this.$refs[this.speciesInput].focus();
     },
     addSpeciesToShoppingList () {
       if (this.missingRequired) return
 
-      this.shoppingList.push({
+      this.addItem({
         cost: this.cost,
         species: this.form.species,
         timestamp: performance.now()

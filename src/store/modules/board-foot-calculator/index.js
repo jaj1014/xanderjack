@@ -6,7 +6,7 @@ import mutations from './mutations'
 const state = JSON.parse(boardFootCalculator.getData())[0];
 
 export default {
-  namespace: true,
+  namespaced: true,
   state,
   getters,
   mutations,

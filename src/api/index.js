@@ -32,7 +32,7 @@ class API {
   // TODO: fix to call an API backend instead of
   postData(data) {
     data = JSON.stringify([data])
-    this.updateAndReturn(data)
+    return this.updateAndReturn(data)
   }
 
   resetData() {
