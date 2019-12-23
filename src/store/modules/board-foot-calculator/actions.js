@@ -2,22 +2,15 @@ import { boardFootCalculator } from '../../../api'
 
 export default {
     addItem({ commit, state }, newItem) {
-        const newState = { ...state }
-        newState.shoppingList.push(newItem)
-        boardFootCalculator.postData(newState)
-
-        commit('setNewState', newState)
+        commit('updateShoppingList', [...state.shoppingList, newItem])
+        boardFootCalculator.postData(state)
     },
     removeItem({ commit, state }, index) {
-        const newState = { ...state }
-        newState.shoppingList.splice(index, 1)
-        boardFootCalculator.postData(newState);
-
-        commit('setNewState', newState);
+        commit('removeItemFromShoppingList', index)
+        boardFootCalculator.postData(state)
     },
     clearShoppingList({ commit }) {
-        const newState = boardFootCalculator.resetData();
-
-        commit('setNewState', newState)
+        const newState = boardFootCalculator.resetData()
+        commit('updateShoppingList', JSON.parse(newState)[0].shoppingList)
     }
 }

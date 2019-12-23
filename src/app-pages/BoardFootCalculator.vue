@@ -44,11 +44,17 @@
       <ul v-else>
         <li v-for="(item, index) in shoppingList" :key="item.timestamp">
           <span>{{ getListItemText(index) }}</span>
-          <span>{{ item.cost }}</span>
+          <span>
+            <span>{{ item.cost }}</span>
+            <trash-icon size="1.5x" @click="removeItem(index)"></trash-icon>
+          </span>
         </li>
         <li>
           <strong>TOTAL:</strong>
-          <span>{{ shoppingListTotal }}</span>
+          <span>
+            <span>{{ shoppingListTotal }}</span>
+            <x-square-icon size="1.5x" @click="clearShoppingList"></x-square-icon>
+          </span>
         </li>
       </ul>
     </div>
@@ -57,9 +63,11 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
+import { TrashIcon, XSquareIcon } from "vue-feather-icons";
 
 export default {
   name: "board-foot-calculator",
+  components: { TrashIcon, XSquareIcon },
   data () {
     return {
       speciesInput: 'speciesInput',
@@ -103,7 +111,7 @@ export default {
     this.focusSpeciesInput();
   },
   methods: {
-    ...mapActions('boardFootCalculator', [ 'addItem' ]),
+    ...mapActions('boardFootCalculator', [ 'addItem', 'removeItem', 'clearShoppingList' ]),
     focusSpeciesInput () {
       this.$refs[this.speciesInput].focus();
     },
@@ -166,8 +174,8 @@ export default {
   color: darkslategrey;
   display: inline-block;
   font-family: monospace;
-  height: 100vh;
-  width: 100vw;
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
 }
 
 
@@ -333,6 +341,13 @@ output > button:disabled {
   margin-bottom: 0.75rem;
   padding: 1rem;
   font-size: 1.5rem;
+}
+
+.list-container li span:last-of-type {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 17%;
 }
 
 .list-container li:last-of-type {
