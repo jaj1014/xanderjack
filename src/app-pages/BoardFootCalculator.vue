@@ -347,7 +347,10 @@ output > button:disabled {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  width: 17%;
+}
+
+.list-container li span span {
+  padding: 0 1rem;
 }
 
 .list-container li:last-of-type {
