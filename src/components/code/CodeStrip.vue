@@ -9,7 +9,7 @@ import SnippetBlock from "./elements/SnippetBlock";
 
 let windowHeight = window.innerHeight;
 const handleResize = e => (windowHeight = e.target.innerHeight);
-window.addEventListener("resize", handleResize);
+window.addEventListener('resize', handleResize);
 
 export default {
   name: "code-strip",
@@ -22,7 +22,7 @@ export default {
     }
   },
   beforeDestroy() {
-    window.removeEventListener(handleResize);
+    window.removeEventListener('resize', handleResize);
   }
 };
 </script>
