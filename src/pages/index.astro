@@ -1,17 +1,69 @@
 ---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Rail from '../components/Rail.astro';
+import Hero from '../components/Hero.astro';
+import WorkIndex from '../components/WorkIndex.astro';
 
+const pieces = (await getCollection('pieces')).sort(
+	(a, b) => (a.data.order ?? 999) - (b.data.order ?? 999)
+);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base title="alex · maker of things">
+	<div class="shell">
+		<Rail />
+		<main class="content">
+			<Hero />
+
+			<section class="work" id="work">
+				<header class="section-head">
+					<h2>my work</h2>
+					<p class="mono">stained glass · wood · whatever's next</p>
+				</header>
+				<WorkIndex pieces={pieces} />
+			</section>
+
+			<section class="about" id="about">
+				<h2>about</h2>
+				<p>
+					I build websites for a living, which I mostly enjoy. The rest
+					of the time I'm usually making things out of wood, glass, or
+					both. I have a soft spot for taking underrated materials and
+					turning them into something great.
+				</p>
+			</section>
+
+			<footer class="contact" id="contact">
+				<p class="mono">say hello</p>
+				<nav>
+					<a href="https://www.instagram.com/xanderjack_woodworking"
+						>instagram</a
+					>
+					<a href="https://github.com/jaj1014">github</a>
+					<a href="https://www.linkedin.com/in/alex-jackson-98000643"
+						>linkedin</a
+					>
+				</nav>
+			</footer>
+		</main>
+	</div>
+</Base>
+
+<style>
+	.about {
+		max-width: 32rem;
+		padding-bottom: 3.5rem;
+	}
+
+	.about h2 {
+		font-size: 1.8rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.about p {
+		font-size: 1.05rem;
+		line-height: 1.65;
+		margin: 0;
+	}
+</style>

@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import Rail from '../components/Rail.astro';
+---
+
+<Base title="alex · 404">
+	<div class="shell">
+		<Rail />
+		<main class="content lost">
+			<p class="mono kicker">404</p>
+			<h1>nothing on this shelf.</h1>
+			<p class="lede">
+				the page you're looking for isn't here. it may have moved, sold,
+				or never been made.
+			</p>
+			<a class="back mono" href="/">← back home</a>
+		</main>
+	</div>
+</Base>
+
+<style>
+	.lost {
+		padding-top: 18vh;
+	}
+
+	.kicker {
+		margin: 0 0 1rem;
+		color: var(--terracotta);
+		font-size: 0.7rem;
+	}
+
+	h1 {
+		font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+		line-height: 1.02;
+		margin: 0 0 1.5rem;
+	}
+
+	.lede {
+		max-width: 28rem;
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: var(--ink-soft);
+		margin: 0 0 2.5rem;
+	}
+
+	.back {
+		font-size: 0.7rem;
+		color: var(--ink-soft);
+		text-decoration: none;
+	}
+
+	.back:hover {
+		color: var(--green);
+	}
+</style>

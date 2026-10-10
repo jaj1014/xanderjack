@@ -1,0 +1,621 @@
+---
+import Base from '../../layouts/Base.astro';
+import Rail from '../../components/Rail.astro';
+---
+
+<Base title="alex · board foot calculator">
+	<div class="shell">
+		<Rail />
+		<main class="content">
+			<a class="back mono" href="/tools">← all tools</a>
+
+			<header class="piece-head">
+				<p class="mono kicker">tools</p>
+				<h1>board foot calculator</h1>
+				<p class="lede">
+					Lumber math for the lumber aisle. Add boards to the list as
+					you price them.
+				</p>
+			</header>
+
+			<form id="bfc-form" class="calc-card">
+				<label class="field">
+					<span class="mono">type / species</span>
+					<input id="species" type="text" autocomplete="off" list="species-opts" />
+					<datalist id="species-opts"></datalist>
+				</label>
+
+				<label class="field">
+					<span class="mono">cost / board foot</span>
+					<input id="price" type="number" min="0" step="any" inputmode="decimal" />
+				</label>
+
+				<div class="field">
+					<span class="mono">length</span>
+					<div class="length-row">
+						<input id="length" type="number" min="0" step="any" inputmode="decimal" />
+						<div class="unit-toggle">
+							<button id="unit-in" class="mono active" type="button">in</button>
+							<button id="unit-ft" class="mono" type="button">ft</button>
+						</div>
+					</div>
+				</div>
+
+				<label class="field">
+					<span class="mono">width</span>
+					<input id="width" type="number" min="0" step="any" inputmode="decimal" />
+				</label>
+
+				<div class="field">
+					<span class="mono">thickness</span>
+					<div class="thick-picks">
+						<button type="button" class="pick mono" data-t="1">4/4</button>
+						<button type="button" class="pick mono" data-t="1.25">5/4</button>
+						<button type="button" class="pick mono" data-t="1.5">6/4</button>
+						<button type="button" class="pick mono" data-t="2">8/4</button>
+						<button type="button" class="pick mono" data-t="other">other</button>
+					</div>
+					<input id="thickness" class="thick-input" type="number" min="0" step="any" inputmode="decimal" hidden />
+				</div>
+
+				<div class="output">
+					<div class="output-nums">
+						<span id="cost" class="cost-num">$0.00</span>
+						<span id="bf" class="bf-num mono">0.00 bf</span>
+					</div>
+					<button id="add" type="submit" disabled>add to list</button>
+				</div>
+			</form>
+
+			<div class="list-card">
+				<p id="empty" class="empty mono">no items on your list</p>
+				<ul id="items" hidden></ul>
+				<div id="total-row" class="total-row" hidden>
+					<strong>total</strong>
+					<span class="total-right">
+						<span id="total" class="total-num">$0.00</span>
+						<span class="copy-spacer" aria-hidden="true"></span>
+						<button id="clear" class="mono clear" type="button">clear</button>
+					</span>
+				</div>
+			</div>
+		</main>
+	</div>
+</Base>
+
+<style>
+	.back {
+		display: inline-block;
+		font-size: 0.7rem;
+		color: var(--ink-soft);
+		text-decoration: none;
+		margin-bottom: 2.5rem;
+	}
+
+	.back:hover {
+		color: var(--green);
+	}
+
+	.piece-head {
+		margin-bottom: 2.5rem;
+	}
+
+	.kicker {
+		margin: 0 0 1rem;
+		color: var(--terracotta);
+	}
+
+	h1 {
+		font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+		line-height: 1.02;
+		margin-bottom: 1rem;
+	}
+
+	.lede {
+		max-width: 32rem;
+		font-size: 1.05rem;
+		line-height: 1.6;
+		margin: 0;
+		color: var(--ink-soft);
+	}
+
+	.calc-card,
+	.list-card {
+		max-width: 34rem;
+		border: 1px solid var(--line);
+		border-radius: 3px;
+		background: var(--mat);
+		padding: 1.5rem;
+	}
+
+	.list-card {
+		margin-top: 1.5rem;
+	}
+
+	.field {
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+		margin-top: 1.1rem;
+	}
+
+	.field:first-of-type,
+	.field:first-child {
+		margin-top: 0;
+	}
+
+	.field > span {
+		font-size: 0.8rem;
+	}
+
+	input[type='number'],
+	input[type='text'] {
+		font-family: 'Work Sans Variable', system-ui, sans-serif;
+		font-size: 1.05rem;
+		padding: 0.6rem 0.75rem;
+		border: 1px solid var(--line);
+		border-radius: 3px;
+		background: var(--paper);
+		color: var(--ink);
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	input[type='number'] {
+		text-align: right;
+	}
+
+	input[type='number']:focus,
+	input[type='text']:focus {
+		outline: 2px solid var(--green);
+		outline-offset: 1px;
+		border-color: var(--green);
+	}
+
+	.length-row {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	.length-row input {
+		flex: 1;
+	}
+
+	.unit-toggle {
+		display: flex;
+		border: 1px solid var(--line);
+		border-radius: 3px;
+		overflow: hidden;
+		background: var(--paper);
+	}
+
+	.unit-toggle button {
+		font-size: 0.78rem;
+		padding: 0.5rem 1rem;
+		border: none;
+		background: none;
+		color: var(--ink-soft);
+		cursor: pointer;
+	}
+
+	.unit-toggle button.active {
+		background: var(--green);
+		color: var(--paper);
+	}
+
+	.thick-picks {
+		display: flex;
+		gap: 0.4rem;
+		margin-top: 0.45rem;
+	}
+
+	.pick {
+		font-size: 0.78rem;
+		padding: 0.55rem 0.85rem;
+		border: 1px solid var(--line);
+		border-radius: 3px;
+		background: none;
+		color: var(--ink-soft);
+		cursor: pointer;
+	}
+
+	.pick:hover {
+		border-color: var(--green);
+		color: var(--green);
+	}
+
+	.pick.active {
+		background: var(--green);
+		border-color: var(--green);
+		color: var(--paper);
+	}
+
+	.thick-input {
+		margin-top: 0.6rem;
+	}
+
+	.output {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		gap: 1rem;
+		margin-top: 1.5rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.output-nums {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+	}
+
+	.cost-num {
+		font-family: 'Fraunces Variable', Georgia, serif;
+		font-size: 2rem;
+		font-weight: 560;
+		color: var(--green);
+		line-height: 1;
+	}
+
+	.bf-num {
+		font-size: 0.75rem;
+	}
+
+	#add {
+		font-family: 'Space Mono', monospace;
+		font-size: 0.85rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		padding: 0.8rem 1.5rem;
+		border: 1px solid var(--green);
+		border-radius: 999px;
+		background: var(--green);
+		color: var(--paper);
+		cursor: pointer;
+	}
+
+	#add:hover:not(:disabled) {
+		background: transparent;
+		color: var(--green);
+	}
+
+	#add:disabled {
+		border-color: var(--line);
+		background: none;
+		color: var(--ink-soft);
+		cursor: default;
+	}
+
+	.empty {
+		margin: 0;
+		font-size: 0.78rem;
+	}
+
+	#items {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	:global(#items li) {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: 1rem;
+		padding: 0.75rem 0;
+		border-bottom: 1px dashed var(--line);
+	}
+
+	:global(#items li:last-child) {
+		border-bottom: none;
+	}
+
+	:global(.item-name) {
+		display: flex;
+		gap: 0.75rem;
+		align-items: baseline;
+	}
+
+	:global(.item-name .mono) {
+		font-size: 0.72rem;
+		color: var(--green);
+	}
+
+	:global(.item-right) {
+		display: flex;
+		align-items: baseline;
+		gap: 0.9rem;
+	}
+
+	:global(.item-cost) {
+		font-family: 'Fraunces Variable', Georgia, serif;
+		font-size: 1.05rem;
+		min-width: 5rem;
+		text-align: right;
+	}
+
+	:global(.remove) {
+		border: none;
+		background: none;
+		color: var(--ink-soft);
+		cursor: pointer;
+		font-size: 1.2rem;
+		padding: 0;
+		width: 2.5rem;
+		text-align: right;
+		line-height: 1;
+	}
+
+	:global(.remove:hover) {
+		color: var(--terracotta);
+	}
+
+	:global(.copy) {
+		border: none;
+		background: none;
+		font-family: 'Space Mono', monospace;
+		font-size: 0.72rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--ink-soft);
+		cursor: pointer;
+		padding: 0;
+		width: 2.75rem;
+		text-align: right;
+	}
+
+	.copy-spacer {
+		width: 2.75rem;
+	}
+
+	:global(.copy:hover) {
+		color: var(--green);
+	}
+
+	:global(.item-price) {
+		font-size: 0.72rem;
+		color: var(--ink-soft);
+	}
+
+	.total-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin-top: 0.75rem;
+		padding-top: 0.9rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.total-row strong {
+		font-family: 'Space Mono', monospace;
+		font-size: 0.8rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		font-weight: 700;
+	}
+
+	.total-right {
+		display: flex;
+		align-items: baseline;
+		gap: 0.9rem;
+	}
+
+	.total-num {
+		font-family: 'Fraunces Variable', Georgia, serif;
+		font-size: 1.3rem;
+		font-weight: 560;
+		color: var(--amber);
+		min-width: 5rem;
+		text-align: right;
+	}
+
+	.clear {
+		border: none;
+		background: none;
+		color: var(--ink-soft);
+		cursor: pointer;
+		font-size: 0.72rem;
+		padding: 0;
+		width: 2.5rem;
+		text-align: right;
+	}
+
+	.clear:hover {
+		color: var(--terracotta);
+	}
+</style>
+
+<script>
+	function initBfc() {
+		const form = document.getElementById(
+			'bfc-form'
+		) as HTMLFormElement | null;
+		if (!form || form.dataset.bound) return;
+		form.dataset.bound = '1';
+
+		const speciesEl = document.getElementById(
+			'species'
+		) as HTMLInputElement;
+		const speciesOpts = document.getElementById(
+			'species-opts'
+		) as HTMLDataListElement;
+		const priceEl = document.getElementById('price') as HTMLInputElement;
+		const lengthEl = document.getElementById(
+			'length'
+		) as HTMLInputElement;
+		const widthEl = document.getElementById('width') as HTMLInputElement;
+		const thickEl = document.getElementById(
+			'thickness'
+		) as HTMLInputElement;
+		const costEl = document.getElementById('cost')!;
+		const bfEl = document.getElementById('bf')!;
+		const addBtn = document.getElementById('add') as HTMLButtonElement;
+		const unitIn = document.getElementById('unit-in')!;
+		const unitFt = document.getElementById('unit-ft')!;
+		const itemsEl = document.getElementById('items')!;
+		const emptyEl = document.getElementById('empty')!;
+		const totalRowEl = document.getElementById('total-row')!;
+		const totalEl = document.getElementById('total')!;
+		const clearBtn = document.getElementById('clear')!;
+
+		let lengthInFeet = false;
+		let list: {
+			species: string;
+			price?: number;
+			thickness?: number;
+			cost: number;
+		}[] = [];
+		try {
+			list = JSON.parse(localStorage.getItem('bfc-list') ?? '[]');
+		} catch {}
+
+		const save = () =>
+			localStorage.setItem('bfc-list', JSON.stringify(list));
+
+		function boardFootage() {
+			const l =
+				(parseFloat(lengthEl.value) || 0) * (lengthInFeet ? 12 : 1);
+			return (
+				((parseFloat(widthEl.value) || 0) *
+					l *
+					(parseFloat(thickEl.value) || 0)) /
+				144
+			);
+		}
+
+		function update() {
+			const bf = boardFootage();
+			const cost = bf * (parseFloat(priceEl.value) || 0);
+			bfEl.textContent = `${bf.toFixed(2)} bf`;
+			costEl.textContent = `$${cost.toFixed(2)}`;
+			addBtn.disabled = !(cost > 0 && speciesEl.value.trim());
+		}
+
+		function render() {
+			emptyEl.hidden = list.length > 0;
+			itemsEl.hidden = list.length === 0;
+			totalRowEl.hidden = list.length === 0;
+			itemsEl.innerHTML = list
+				.map(
+					(item, i) => `
+				<li>
+					<span class="item-name">
+						<span class="mono">${String(i + 1).padStart(2, '0')}</span>
+						<span>${item.species}${item.price != null ? ` <span class="item-price mono">($${item.price.toFixed(2)}/bf)</span>` : ''}</span>
+					</span>
+					<span class="item-right">
+						<span class="item-cost">$${item.cost.toFixed(2)}</span>
+						<button class="copy" type="button" data-i="${i}">copy</button>
+						<button class="remove" type="button" data-i="${i}" aria-label="remove">×</button>
+					</span>
+				</li>`
+				)
+				.join('');
+			totalEl.textContent = `$${list.reduce((s, i) => s + i.cost, 0).toFixed(2)}`;
+			speciesOpts.innerHTML = [...new Set(list.map((i) => i.species))]
+				.map((s) => `<option value="${s}"></option>`)
+				.join('');
+		}
+
+		form.addEventListener('input', update);
+
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+			if (addBtn.disabled) return;
+			list.push({
+				species: speciesEl.value.trim(),
+				price: parseFloat(priceEl.value) || undefined,
+				thickness: parseFloat(thickEl.value) || undefined,
+				cost: boardFootage() * (parseFloat(priceEl.value) || 0),
+			});
+			save();
+			render();
+			lengthEl.value = '';
+			widthEl.value = '';
+			lengthInFeet = false;
+			unitIn.classList.add('active');
+			unitFt.classList.remove('active');
+			update();
+			lengthEl.focus();
+		});
+
+		[unitIn, unitFt].forEach((btn, i) =>
+			btn.addEventListener('click', () => {
+				lengthInFeet = i === 1;
+				unitIn.classList.toggle('active', i === 0);
+				unitFt.classList.toggle('active', i === 1);
+				update();
+			})
+		);
+
+		itemsEl.addEventListener('click', (e) => {
+			const target = e.target as Element;
+			const removeBtn = target.closest(
+				'.remove'
+			) as HTMLElement | null;
+			if (removeBtn?.dataset.i) {
+				list.splice(Number(removeBtn.dataset.i), 1);
+				save();
+				render();
+				return;
+			}
+			const copyBtn = target.closest('.copy') as HTMLElement | null;
+			if (copyBtn?.dataset.i) {
+				const item = list[Number(copyBtn.dataset.i)];
+				if (!item) return;
+				speciesEl.value = item.species;
+				if (item.price != null) priceEl.value = String(item.price);
+				if (item.thickness != null) setThickness(item.thickness);
+				update();
+				lengthEl.focus();
+			}
+		});
+
+		const picks =
+			document.querySelectorAll<HTMLButtonElement>('.pick');
+
+		function setThickness(v: number) {
+			const match = [...picks].find((p) => p.dataset.t === String(v));
+			picks.forEach((p) => p.classList.remove('active'));
+			if (match) {
+				match.classList.add('active');
+				thickEl.value = String(v);
+				thickEl.hidden = true;
+			} else {
+				const other = [...picks].find((p) => p.dataset.t === 'other');
+				other?.classList.add('active');
+				thickEl.value = String(v);
+				thickEl.hidden = false;
+			}
+		}
+
+		picks.forEach((btn) =>
+			btn.addEventListener('click', () => {
+				picks.forEach((p) => p.classList.remove('active'));
+				btn.classList.add('active');
+				if (btn.dataset.t === 'other') {
+					thickEl.value = '';
+					thickEl.hidden = false;
+					thickEl.focus();
+				} else {
+					thickEl.value = btn.dataset.t ?? '';
+					thickEl.hidden = true;
+				}
+				update();
+			})
+		);
+
+		clearBtn.addEventListener('click', () => {
+			list = [];
+			save();
+			render();
+		});
+
+		update();
+		render();
+	}
+
+	initBfc();
+	document.addEventListener('astro:page-load', initBfc);
+</script>

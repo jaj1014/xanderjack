@@ -1,0 +1,224 @@
+---
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/work-sans';
+import '@fontsource/space-mono/400.css';
+import '@fontsource/space-mono/700.css';
+import { ClientRouter } from 'astro:transitions';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+const description =
+	'things made by hand — mostly wood and stained glass.';
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og.jpg', Astro.site);
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="manifest" href="/manifest.webmanifest" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<meta name="theme-color" content="#3a7d4f" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-title" content="alex" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="alex" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImage} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		<ClientRouter />
+		<title>{title}</title>
+		<script is:inline>
+			const stored = localStorage.getItem('theme');
+			const prefers = matchMedia('(prefers-color-scheme: dark)').matches
+				? 'dark'
+				: 'light';
+			document.documentElement.dataset.theme = stored || prefers;
+		</script>
+		<script is:inline>
+			if ('serviceWorker' in navigator && location.protocol !== 'http:')
+				navigator.serviceWorker.register('/sw.js');
+		</script>
+		<style is:global>
+			:root {
+				--paper: #f8f5ec;
+				--ink: #26332a;
+				--ink-soft: #687a6c;
+				--green: #3a7d4f;
+				--sage: #a8c4a4;
+				--amber: #e0b34e;
+				--terracotta: #cc7a55;
+				--walnut: #7a6148;
+				--line: #d8d2c0;
+				--mat: #fdfbf3;
+			}
+
+			[data-theme='dark'] {
+				--paper: #202a22;
+				--ink: #eef0e2;
+				--ink-soft: #a9b8a4;
+				--green: #8fc79c;
+				--sage: #6a8a6c;
+				--amber: #eec066;
+				--terracotta: #dd8f66;
+				--walnut: #a08464;
+				--line: #3a4a3c;
+				--mat: #2b382d;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				margin: 0;
+				font-family: 'Work Sans Variable', system-ui, sans-serif;
+				background: var(--paper);
+				color: var(--ink);
+				transition:
+					background 0.25s ease,
+					color 0.25s ease;
+			}
+
+			::selection {
+				background: var(--amber);
+				color: var(--ink);
+			}
+
+			[id] {
+				scroll-margin-top: 4rem;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-family: 'Fraunces Variable', Georgia, serif;
+				font-weight: 560;
+				font-variation-settings: 'WONK' 1;
+				letter-spacing: -0.02em;
+				color: var(--green);
+				margin: 0;
+			}
+
+			.mono {
+				font-family: 'Space Mono', monospace;
+				font-size: 0.75rem;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: var(--ink-soft);
+			}
+
+			/* shared page layout: rail + scrolling content */
+			.shell {
+				display: grid;
+				grid-template-columns: 17rem 1fr;
+				min-height: 100vh;
+			}
+
+			.content {
+				padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem) 4rem;
+				max-width: 64rem;
+			}
+
+			.section-head {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				gap: 1rem;
+				padding-bottom: 1rem;
+				border-bottom: 1px solid var(--line);
+				margin-bottom: 0.5rem;
+			}
+
+			.section-head h2 {
+				font-size: 1.8rem;
+			}
+
+			.contact {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				padding-top: 1.25rem;
+				border-top: 1px solid var(--line);
+			}
+
+			.contact p {
+				margin: 0;
+			}
+
+			.contact nav {
+				display: flex;
+				gap: 2rem;
+			}
+
+			.contact a {
+				font-family: 'Space Mono', monospace;
+				font-size: 0.85rem;
+				color: var(--green);
+				text-decoration: none;
+				border-bottom: 1px solid var(--green);
+			}
+
+			@media (max-width: 900px) {
+				.shell {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<slot />
+		<script>
+			if (!(window as any).__navBound) {
+				(window as any).__navBound = true;
+				document.addEventListener('astro:after-swap', () => {
+					const stored = localStorage.getItem('theme');
+					if (stored)
+						document.documentElement.dataset.theme = stored;
+				});
+				document.addEventListener('click', (e) => {
+					const target = e.target as Element;
+					if (target.closest('#theme-toggle')) {
+						const el = document.documentElement;
+						const next =
+							el.dataset.theme === 'dark' ? 'light' : 'dark';
+						el.dataset.theme = next;
+						localStorage.setItem('theme', next);
+						return;
+					}
+					const thumb = target.closest<HTMLElement>('.thumb-btn');
+					if (thumb?.dataset.full) {
+						const stage =
+							document.querySelector<HTMLImageElement>(
+								'.stage img'
+							);
+						if (stage) stage.src = thumb.dataset.full;
+						document
+							.querySelectorAll('.thumb-btn')
+							.forEach((b) => b.classList.remove('active'));
+						thumb.classList.add('active');
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,267 @@
+---
+import { getCollection, render } from 'astro:content';
+import { getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Rail from '../../components/Rail.astro';
+
+export async function getStaticPaths() {
+	const pieces = (await getCollection('pieces')).sort(
+		(a, b) => (a.data.order ?? 999) - (b.data.order ?? 999)
+	);
+	return pieces.map((piece, i) => ({
+		params: { slug: piece.id },
+		props: {
+			piece,
+			prev: pieces[(i - 1 + pieces.length) % pieces.length],
+			next: pieces[(i + 1) % pieces.length],
+		},
+	}));
+}
+
+const { piece, prev, next } = Astro.props;
+const { Content } = await render(piece);
+
+const heroFull = await getImage({ src: piece.data.image, width: 1400 });
+const heroThumb = await getImage({ src: piece.data.image, width: 400 });
+const extras = await Promise.all(
+	(piece.data.images ?? []).map(async (img) => ({
+		thumb: (await getImage({ src: img, width: 400 })).src,
+		full: (await getImage({ src: img, width: 1400 })).src,
+	}))
+);
+const slides = [{ thumb: heroThumb.src, full: heroFull.src }, ...extras];
+---
+
+<Base title={`alex · ${piece.data.title}`}>
+	<div class="shell">
+		<Rail />
+		<main class="content">
+			<a class="back mono" href="/#work">← all work</a>
+
+			<header class="piece-head">
+				<p class="mono kicker">
+					{piece.data.medium} · {piece.data.year}
+				</p>
+				<h1>{piece.data.title}</h1>
+			</header>
+
+			<div class="viewer">
+				<div class="stage">
+					<img src={heroFull.src} alt={piece.data.title} />
+				</div>
+				{
+					slides.length > 1 && (
+						<div class="thumbs">
+							{slides.map((slide, i) => (
+								<button
+									class:list={['thumb-btn', { active: i === 0 }]}
+									data-full={slide.full}
+									aria-label={`view photo ${i + 1}`}
+								>
+									<img src={slide.thumb} alt="" />
+								</button>
+							))}
+						</div>
+					)
+				}
+			</div>
+
+			<div class="story">
+				<Content />
+			</div>
+
+			<dl class="specs">
+				<div class="spec">
+					<dt class="mono">medium</dt>
+					<dd>{piece.data.medium}</dd>
+				</div>
+				{
+					piece.data.materials && (
+						<div class="spec">
+							<dt class="mono">materials</dt>
+							<dd>{piece.data.materials}</dd>
+						</div>
+					)
+				}
+				<div class="spec">
+					<dt class="mono">year</dt>
+					<dd>{piece.data.year}</dd>
+				</div>
+			</dl>
+
+			<nav class="piece-nav">
+				<a class="nav-prev" href={`/work/${prev.id}`}>
+					<span class="arrow mono">←</span>{prev.data.title}
+				</a>
+				<a class="nav-next" href={`/work/${next.id}`}>
+					{next.data.title}<span class="arrow mono">→</span>
+				</a>
+			</nav>
+		</main>
+	</div>
+</Base>
+
+<style>
+	.back {
+		display: inline-block;
+		font-size: 0.7rem;
+		color: var(--ink-soft);
+		text-decoration: none;
+		margin-bottom: 2.5rem;
+	}
+
+	.back:hover {
+		color: var(--green);
+	}
+
+	.piece-head {
+		margin-bottom: 2rem;
+	}
+
+	.kicker {
+		margin: 0 0 1rem;
+		color: var(--terracotta);
+	}
+
+	h1 {
+		font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+		line-height: 1.02;
+	}
+
+	.viewer {
+		display: grid;
+		grid-template-columns: 1fr 5.5rem;
+		gap: 1.25rem;
+		align-items: start;
+		margin-bottom: 2.5rem;
+	}
+
+	.stage {
+		height: clamp(20rem, 60vh, 34rem);
+	}
+
+	.stage img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		box-sizing: border-box;
+		padding: 0.9rem;
+		background: var(--mat);
+		border: 1px solid var(--line);
+		border-radius: 3px;
+	}
+
+	.thumbs {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+
+	.thumb-btn {
+		padding: 0;
+		width: 100%;
+		height: 3.75rem;
+		border: 2px solid transparent;
+		border-radius: 3px;
+		overflow: hidden;
+		cursor: pointer;
+		background: var(--mat);
+	}
+
+	.thumb-btn img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.thumb-btn.active {
+		border-color: var(--amber);
+	}
+
+	.thumb-btn:hover {
+		border-color: var(--sage);
+	}
+
+	@media (max-width: 900px) {
+		.viewer {
+			grid-template-columns: 1fr;
+		}
+
+		.stage {
+			height: clamp(16rem, 50vh, 26rem);
+		}
+
+		.thumbs {
+			flex-direction: row;
+		}
+
+		.thumb-btn {
+			width: 4.5rem;
+			height: 3.4rem;
+		}
+	}
+
+	.piece-nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: 2rem;
+		margin-top: 0.5rem;
+		padding: 1.4rem 0 4rem;
+	}
+
+	.piece-nav a {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.6rem;
+		font-family: 'Fraunces Variable', Georgia, serif;
+		font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+		text-decoration: none;
+		color: var(--ink);
+	}
+
+	.piece-nav a:hover {
+		color: var(--green);
+		font-style: italic;
+	}
+
+	.piece-nav .arrow {
+		font-size: 0.85rem;
+		color: var(--ink-soft);
+	}
+
+	.story {
+		max-width: 34rem;
+		font-size: 1.05rem;
+		line-height: 1.7;
+		padding-bottom: 3rem;
+	}
+
+	.story :global(p) {
+		margin: 0 0 1.25rem;
+	}
+
+	.specs {
+		margin: 0;
+		border-top: 1px solid var(--line);
+	}
+
+	.spec {
+		display: grid;
+		grid-template-columns: 8rem 1fr;
+		gap: 1rem;
+		padding: 0.9rem 0;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.spec dt {
+		font-size: 0.65rem;
+		padding-top: 0.15rem;
+	}
+
+	.spec dd {
+		margin: 0;
+	}
+</style>

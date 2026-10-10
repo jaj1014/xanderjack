@@ -1,0 +1,81 @@
+---
+import Base from '../../layouts/Base.astro';
+import Rail from '../../components/Rail.astro';
+import { tools } from '../../data/tools';
+---
+
+<Base title="alex · tools">
+	<div class="shell">
+		<Rail />
+		<main class="content">
+			<header class="section-head">
+				<h2>tools</h2>
+				<p class="mono">small utilities worth keeping around</p>
+			</header>
+
+			<div class="index">
+				{
+					tools.map((tool, i) => (
+						<a class="row" href={`/tools/${tool.slug}`}>
+							<span class="num mono">
+								{String(i + 1).padStart(2, '0')}
+							</span>
+							<span class="name">{tool.name}</span>
+							<span class="blurb mono">{tool.blurb}</span>
+						</a>
+					))
+				}
+			</div>
+		</main>
+	</div>
+</Base>
+
+<style>
+	.index {
+		padding-bottom: 4rem;
+	}
+
+	.row {
+		display: grid;
+		grid-template-columns: 2.5rem 1fr auto;
+		align-items: baseline;
+		gap: 1.5rem;
+		padding: 1.4rem 0.5rem;
+		border-bottom: 1px solid var(--line);
+		text-decoration: none;
+		color: var(--ink);
+		transition:
+			padding-left 0.25s ease,
+			background 0.25s ease;
+	}
+
+	.row:hover {
+		padding-left: 0.65rem;
+		background: color-mix(in srgb, var(--sage) 12%, transparent);
+	}
+
+	.num {
+		color: var(--green);
+		font-size: 0.7rem;
+	}
+
+	.name {
+		font-family: 'Fraunces Variable', Georgia, serif;
+		font-weight: 480;
+		font-size: clamp(1.5rem, 3vw, 2.2rem);
+		letter-spacing: -0.01em;
+		line-height: 1.1;
+	}
+
+	.row:hover .name {
+		color: var(--green);
+		font-style: italic;
+	}
+
+	.blurb {
+		font-size: 0.68rem;
+		color: var(--ink-soft);
+		text-transform: none;
+		letter-spacing: 0.02em;
+	}
+</style>

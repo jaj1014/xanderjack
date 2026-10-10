@@ -1,0 +1,142 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+
+interface Props {
+	pieces: CollectionEntry<'pieces'>[];
+}
+
+const { pieces } = Astro.props;
+---
+
+<div class="index">
+	{
+		pieces.map((piece, i) => (
+			<a class="row" href={`/work/${piece.id}`}>
+				<span class="num mono">{String(i + 1).padStart(2, '0')}</span>
+				<span class="name">{piece.data.title}</span>
+				<span class="meta mono">{piece.data.medium}</span>
+				<span class="year mono">{piece.data.year}</span>
+				<Image class="pop" src={piece.data.image} alt="" width={720} />
+				<Image class="thumb" src={piece.data.image} alt="" width={720} />
+			</a>
+		))
+	}
+</div>
+
+<style>
+	.index {
+		padding-bottom: 4rem;
+	}
+
+	.row {
+		display: grid;
+		grid-template-columns: 2.5rem 1fr auto auto;
+		align-items: baseline;
+		gap: 1.5rem;
+		padding: 1.4rem 0.5rem;
+		border-bottom: 1px solid var(--line);
+		text-decoration: none;
+		color: var(--ink);
+		position: relative;
+		transition:
+			padding-left 0.25s ease,
+			background 0.25s ease;
+	}
+
+	.row:hover {
+		padding-left: 0.65rem;
+		background: color-mix(in srgb, var(--sage) 12%, transparent);
+	}
+
+	.num {
+		color: var(--green);
+		font-size: 0.7rem;
+	}
+
+	.name {
+		font-family: 'Fraunces Variable', Georgia, serif;
+		font-weight: 480;
+		font-variation-settings: 'WONK' 1;
+		font-size: clamp(1.5rem, 3vw, 2.2rem);
+		letter-spacing: -0.01em;
+		line-height: 1.1;
+	}
+
+	.row:hover .name {
+		color: var(--green);
+		font-style: italic;
+	}
+
+	.meta,
+	.year {
+		font-size: 0.68rem;
+		color: var(--ink-soft);
+	}
+
+	/* hover preview card — pure CSS */
+	.pop {
+		position: absolute;
+		right: 12%;
+		top: 50%;
+		z-index: 30;
+		width: clamp(10.5rem, 15vw, 13.5rem);
+		height: clamp(7rem, 10vw, 9.5rem);
+		box-sizing: border-box;
+		padding: 0.45rem;
+		background: var(--mat);
+		border: 1px solid var(--line);
+		object-fit: cover;
+		border-radius: 3px;
+		box-shadow: 0 12px 32px rgb(0 0 0 / 22%);
+		pointer-events: none;
+		opacity: 0;
+		transform: translateY(-50%) scale(0.9) rotate(-2deg);
+		transition:
+			opacity 0.18s ease,
+			transform 0.18s ease;
+	}
+
+	.row:hover .pop {
+		opacity: 1;
+		transform: translateY(-50%) scale(1) rotate(1.5deg);
+	}
+
+	/* inline thumbs — touch/mobile widths only */
+	.thumb {
+		display: none;
+	}
+
+	@media (max-width: 900px) {
+		.row {
+			grid-template-columns: 2rem 1fr auto;
+			grid-template-areas:
+				'num name year'
+				'thumb thumb thumb';
+			row-gap: 0.75rem;
+		}
+		.num {
+			grid-area: num;
+		}
+		.name {
+			grid-area: name;
+		}
+		.year {
+			grid-area: year;
+		}
+		.meta {
+			display: none;
+		}
+		.thumb {
+			display: block;
+			grid-area: thumb;
+			width: 100%;
+			height: 12rem;
+			object-fit: cover;
+			border-radius: 3px;
+		}
+		.pop {
+			display: none;
+		}
+	}
+</style>
